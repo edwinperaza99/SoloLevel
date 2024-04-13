@@ -34,11 +34,26 @@ struct CustomButtonModifier: ViewModifier {
     }
 }
 
+struct CustomInputFieldModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .overlay(
+                RoundedRectangle(cornerRadius: 24)
+                    .stroke(Color(.systemGray3), lineWidth: 1)
+                    .padding(.horizontal, -12)
+            )
+            .padding(.horizontal, 24)
+    }
+}
+
 extension View {
     func customTextStyle() -> some View {
         self.modifier(CustomTextModifier())
     }
     func customButtonStyle() -> some View {
         self.modifier(CustomButtonModifier())
+    }
+    func customInputFieldStyle() -> some View {
+        self.modifier(CustomInputFieldModifier())
     }
 }
