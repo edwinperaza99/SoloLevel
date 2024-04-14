@@ -17,6 +17,22 @@ struct CustomTextModifier: ViewModifier {
     }
 }
 
+struct CustomTextModifierSM: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.subheadline)
+            .multilineTextAlignment(.leading)
+            .textCase(.uppercase)
+    }
+}
+
+struct AlignLeftModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
 struct CustomButtonModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -49,6 +65,12 @@ struct CustomInputFieldModifier: ViewModifier {
 extension View {
     func customTextStyle() -> some View {
         self.modifier(CustomTextModifier())
+    }
+    func customTextStyleSM() -> some View {
+        self.modifier(CustomTextModifierSM())
+    }
+    func AlignLeft() -> some View {
+        self.modifier(AlignLeftModifier())
     }
     func customButtonStyle() -> some View {
         self.modifier(CustomButtonModifier())

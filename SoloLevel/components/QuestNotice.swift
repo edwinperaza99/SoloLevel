@@ -23,3 +23,16 @@ struct QuestNotice: View {
     }
 }
 
+struct Stats: View {
+    var body: some View {
+        VStack(spacing: 0){
+            RectangleDivider()
+            Text("stats")
+            .font(.largeTitle)
+            .textCase(.uppercase)
+            RectangleDivider()
+        }
+    }
+}
+
+
