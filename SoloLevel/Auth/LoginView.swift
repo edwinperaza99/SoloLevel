@@ -2,7 +2,7 @@
 //  LoginView.swift
 //  SoloLevel
 //
-//  Created by csuftitan on 4/13/24.
+//  Created by Edwin on 4/13/24.
 //
 
 import SwiftUI
@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    
     @State private var isShowingPassword = false
     
     var body: some View {

@@ -2,29 +2,29 @@
 //  SignupView.swift
 //  SoloLevel
 //
-//  Created by csuftitan on 4/13/24.
+//  Created by Edwin on 4/13/24.
 //
 
 import SwiftUI
 
 struct SignupView: View {
-    @State private var email = ""
-    @State private var password = ""
+    @StateObject var viewModel = RegistrationViewModel()
+    
     @State private var isShowingPassword = false
     
     @Environment(\.dismiss) private var dismiss
     
     var isPasswordValidLength: Bool {
-        return password.count >= 6
+        return viewModel.password.count >= 6
     }
     var hasNumber: Bool {
-        return password.contains(where: {$0.isNumber})
+        return viewModel.password.contains(where: {$0.isNumber})
     }
     var hasUppercase: Bool {
-        return password.contains(where: {$0.isUppercase})
+        return viewModel.password.contains(where: {$0.isUppercase})
     }
     var hasLowercase: Bool {
-        return password.contains(where: {$0.isLowercase})
+        return viewModel.password.contains(where: {$0.isLowercase})
     }
     var isPasswordValid: Bool {
         return isPasswordValidLength && hasNumber && hasLowercase && hasUppercase
@@ -46,7 +46,7 @@ struct SignupView: View {
                 HStack {
                     Image(systemName: "envelope")
                         .fontWeight(.semibold)
-                    TextField("Email", text: $email)
+                    TextField("Email", text: $viewModel.email)
                         .font(.subheadline)
                         .padding(12)
                         .cornerRadius(12)
@@ -57,12 +57,12 @@ struct SignupView: View {
                     Image(systemName: "lock")
                         .fontWeight(.semibold)
                     if isShowingPassword {
-                        TextField("Password", text: $password)
+                        TextField("Password", text: $viewModel.password)
                             .font(.subheadline)
                             .padding(12)
                             .cornerRadius(12)
                     } else {
-                        SecureField("Password", text: $password)
+                        SecureField("Password", text: $viewModel.password)
                             .font(.subheadline)
                             .padding(12)
                             .cornerRadius(12)
@@ -107,7 +107,9 @@ struct SignupView: View {
 //                Sign up button
                 VStack(spacing: 15){
                     Button {
-//                        do something
+                        Task {
+                            try await viewModel.createUser()
+                        }
                     } label: {
                         Text("REGISTER")
                     }
