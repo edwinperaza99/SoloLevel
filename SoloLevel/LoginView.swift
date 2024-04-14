@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @State private var isShowingPassword = false
     
     var body: some View {
         NavigationStack {
@@ -35,16 +36,24 @@ struct LoginView: View {
                 .customInputFieldStyle()
 //                password input
                 HStack {
-                    Image(systemName: "envelope")
+                    Image(systemName: "lock")
                         .fontWeight(.semibold)
-                    TextField("Password", text: $password)
-                        .font(.subheadline)
-                        .padding(12)
-                        .cornerRadius(12)
+                    if isShowingPassword {
+                        TextField("Password", text: $password)
+                            .font(.subheadline)
+                            .padding(12)
+                            .cornerRadius(12)
+                    } else {
+                        SecureField("Password", text: $password)
+                            .font(.subheadline)
+                            .padding(12)
+                            .cornerRadius(12)
+                    }
                     Button {
 //                        show password
+                        isShowingPassword.toggle()
                     } label: {
-                        Image(systemName: "eye")
+                        Image(systemName: isShowingPassword ? "eye": "eye.slash")
                             .foregroundColor(.gray)
                     }
                 }
@@ -56,7 +65,7 @@ struct LoginView: View {
 //                            do something
                     } label: {
                         Text("Forgot password?")
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.red)
                             .padding(.trailing)
                     }
                 }
@@ -85,8 +94,8 @@ struct LoginView: View {
                 HStack {
                     Text("You are not a registered player yet?")
                     NavigationLink {
-//                    TODO: replace with actual view
-                        EmptyView()
+                        SignupView()
+                            .navigationBarBackButtonHidden()
                     } label: {
                         Text("Sign Up")
                             .foregroundColor(.red)
