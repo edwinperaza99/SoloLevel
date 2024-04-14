@@ -18,6 +18,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 @main
 struct SoloLevelApp: App {
+//    snippet of code to clear UserDefaults for testing purposes
+//    init() {
+//           if let appDomain = Bundle.main.bundleIdentifier {
+//               UserDefaults.standard.removePersistentDomain(forName: appDomain)
+//               UserDefaults.standard.synchronize()
+//           }
+//       }
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
