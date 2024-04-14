@@ -15,7 +15,12 @@ struct Challenge: Identifiable {
 
 struct ChallengesView: View {
     @State private var showingAlert = false
-
+    
+//    timer related variables
+    @State private var countdownTimer = ""
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var isWaveActive = false
+    
     @State private var challenges: [Challenge] = [
         Challenge(text: "Push-ups", quantity: 100),
         Challenge(text: "Sit-ups", quantity: 100),
@@ -25,8 +30,7 @@ struct ChallengesView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 40) {
-                Spacer()
+            VStack(spacing: 20) {
                 QuestNotice()
                 
                 Text("Daily quest - Train to become a formidable combatant")
@@ -48,7 +52,23 @@ struct ChallengesView: View {
 //                alert message here
                 (Text("Caution!").foregroundColor(.red) + Text(" - If the daily quest remains incomplete, penalties may be given"))
                     .customTextStyle()
-                Spacer()
+//                timer diplay
+                VStack(spacing: 10){
+                    Image(systemName: isWaveActive ? "alarm" : "alarm.waves.left.and.right")
+                      .aspectRatio(contentMode: .fit)
+                      .font(.largeTitle)
+                      .foregroundColor(isWaveActive ? .gray : .orange)
+                      .onReceive(timer) { _ in
+                          isWaveActive.toggle()
+                          updateTimer()
+                      }
+                    Text("\(countdownTimer)")
+                        .font(.title)
+                        .foregroundColor(.gray)
+                        .onReceive(timer) { _ in
+                            updateTimer()
+                        }
+                }
             }
 //            TODO: add alert for when challenge has not been met
             if showingAlert {
@@ -57,6 +77,16 @@ struct ChallengesView: View {
             }
         }
         .preferredColorScheme(.dark)
+    }
+    func updateTimer() {
+        let calendar = Calendar.current
+        let now = Date()
+        let nextDay = calendar.startOfDay(for: calendar.date(byAdding: .day, value: 1, to: now)!)
+        let timeLeft = nextDay.timeIntervalSince(now)
+        let hours = Int(timeLeft) / 3600
+        let minutes = Int(timeLeft) / 60 % 60
+        let seconds = Int(timeLeft) % 60
+        countdownTimer = String(format: "%02i:%02i:%02i", hours, minutes, seconds)
     }
 }
 
