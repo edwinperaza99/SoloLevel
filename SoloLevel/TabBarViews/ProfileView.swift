@@ -2,7 +2,7 @@
 //  ProfileView.swift
 //  SoloLevel
 //
-//  Created by csuftitan on 4/13/24.
+//  Created by Edwin on 4/13/24.
 //
 
 import SwiftUI

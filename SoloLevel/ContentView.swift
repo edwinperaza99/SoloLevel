@@ -24,14 +24,9 @@ struct CustomAlertView: View {
                     showingAlert = false
                 }
                 .customButtonStyle()
-                //                .padding(.horizontal)
-                //                .padding(.vertical, 8)
-                //                .background(Color.blue)
-                //                .foregroundColor(.white)
-                //                .cornerRadius(10)
+                .cornerRadius(10)
             }
-//            .padding()
-            //            .background(Color.blue)
+          .background(Color.blue)
             .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
             }
         }
@@ -40,60 +35,68 @@ struct CustomAlertView: View {
 struct ContentView: View {
     @State private var showingAlert = false
     @State private var showingLogin = false
+    @StateObject var viewModel = ContentViewModel()
+    @State private var isVStackVisible: Bool = true
 
     
     var body: some View {
-        ZStack {
-            VStack(spacing: 40) {
-//                Spacer()
-//                VStack(spacing: 40){
-                    Notice()
-                    
-                    Text("You now qualify to become a player.")
-                        .customTextStyle()
-                    Text("Do you accept?")
-                        .customTextStyle()
-                    HStack(spacing: 30){
-                        Button {
-                            // login
-                            showingLogin = true
-                        }label: {
-                            Text("ACCEPT")
-                                .foregroundColor(.white)
-                        }
-                        .customButtonStyle()
-                        
-                        Button {
-                            showingAlert = true
-                        }label: {
-                            Text("DECLINE")
-                                .foregroundColor(.white)
-                        }
-                        .customButtonStyle()
+        VStack {
+            if isVStackVisible {
+                ZStack {
+                    VStack(spacing: 40) {
+        //                Spacer()
+        //                VStack(spacing: 40){
+                            Notice()
+                            
+                            Text("You now qualify to become a player.")
+                                .customTextStyle()
+                            Text("Do you accept?")
+                                .customTextStyle()
+                            HStack(spacing: 30){
+                                Button {
+                                    // login
+                                    UserDefaults.standard.set(true, forKey: "Onboarding")
+                                    UserDefaults.standard.synchronize()
+                                    showingLogin = true
+                                }label: {
+                                    Text("ACCEPT")
+                                        .foregroundColor(.white)
+                                }
+                                .customButtonStyle()
+                                
+                                Button {
+                                    showingAlert = true
+                                }label: {
+                                    Text("DECLINE")
+                                        .foregroundColor(.white)
+                                }
+                                .customButtonStyle()
+                            }
                     }
-//                }
-//                .alert(isPresented: $showingAlert){
-//                    Alert(
-//                        title: Text("Solo Level"),
-//                        message:  Text("You don't really want to decline"),
-//                        dismissButton: .default(Text("Take me back"))
-//                        
-//                        
-//                    )
-//                }
-//                
-                
-//                Spacer()
-            }
-            .fullScreenCover(isPresented: $showingLogin, content: {
-                LoginView()
-            })
-            if showingAlert {
-                CustomAlertView(showingAlert: $showingAlert)
-                    .transition(.scale)
+                    .fullScreenCover(isPresented: $showingLogin, content: {
+                        LoginView()
+                    })
+                    if showingAlert {
+                        CustomAlertView(showingAlert: $showingAlert)
+                            .transition(.scale)
+                    }
+                }
+                .preferredColorScheme(.dark)
+            } else {
+                Group {
+                    if viewModel.userSession != nil {
+                        TabBar()
+                    } else {
+                        LoginView()
+                    }
+                }
             }
         }
-        .preferredColorScheme(.dark)
+        .onAppear(perform: {
+            if UserDefaults.standard.bool(forKey: "Onboarding"){
+                isVStackVisible = false
+            }
+        })
     }
 }
 
