@@ -24,7 +24,6 @@ class Challenge: Identifiable, ObservableObject {
 
 struct ChallengesView: View {
     @State private var showingAlert = false
-    @State private var allChallengesCompleted = true
     @State private var experienceNotification = false
     
 //    timer related variables
@@ -34,10 +33,14 @@ struct ChallengesView: View {
     
     @State private var challenges: [Challenge] = [
         Challenge(text: "Push-ups", quantity: 10),
-        Challenge(text: "Sit-ups", quantity: 30),
-        Challenge(text: "Squats", quantity: 20),
+        Challenge(text: "Sit-ups", quantity: 12),
+        Challenge(text: "Squats", quantity: 5),
         Challenge(text: "Run", quantity: 10)
     ]
+    
+    private var allChallengesCompleted: Bool {
+           challenges.allSatisfy { $0.completed }
+       }
     
     var body: some View {
         ZStack {
@@ -90,15 +93,19 @@ struct ChallengesView: View {
                             updateTimer()
                         }
                 }
-                if allChallengesCompleted {
-                    Button("COLLECT XP") {
-                       experienceNotification = true
-                   }
-                   .customButtonStyle()
+             
+//                    button to collect xp only appears when challenges are completed
+                Button("COLLECT XP") {
+                   experienceNotification = true
+//                        handleCall to add points to redeem in profile
+               }
+               .customButtonStyle()
+               .opacity(allChallengesCompleted ? 1 : 0)
+              .disabled(!allChallengesCompleted)
 //                   .sheet(isPresented: $showLevelUpView) {
 //                       LevelUpView()
 //                   }
-                }
+                
             }
 //            TODO: add alert for when challenge has not been met
             if showingAlert {
