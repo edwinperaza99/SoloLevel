@@ -26,7 +26,8 @@ struct CustomAlertView: View {
                 .customButtonStyle()
                 .cornerRadius(10)
             }
-          .background(Color.blue)
+//            can test colors for view easily here
+//          .background(Color.blue)
             .preferredColorScheme(/*@START_MENU_TOKEN@*/.dark/*@END_MENU_TOKEN@*/)
             }
         }
@@ -44,10 +45,7 @@ struct ContentView: View {
             if isVStackVisible {
                 ZStack {
                     VStack(spacing: 40) {
-        //                Spacer()
-        //                VStack(spacing: 40){
                             Notice()
-                            
                             Text("You now qualify to become a player.")
                                 .customTextStyle()
                             Text("Do you accept?")
@@ -84,7 +82,8 @@ struct ContentView: View {
                 .preferredColorScheme(.dark)
             } else {
                 Group {
-                    if viewModel.userSession != nil {
+//                    check if "$" is really necessary
+                    if $viewModel.userSession != nil {
                         TabBar()
                     } else {
                         LoginView()

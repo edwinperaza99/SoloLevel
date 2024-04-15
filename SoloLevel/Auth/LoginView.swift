@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State private var email = ""
-    @State private var password = ""
+    @StateObject var viewModel = LoginViewModel()
     
     @State private var isShowingPassword = false
     
@@ -29,7 +28,7 @@ struct LoginView: View {
                 HStack {
                     Image(systemName: "envelope")
                         .fontWeight(.semibold)
-                    TextField("Email", text: $email)
+                    TextField("Email", text: $viewModel.email)
                         .font(.subheadline)
                         .padding(12)
                         .cornerRadius(12)
@@ -40,12 +39,12 @@ struct LoginView: View {
                     Image(systemName: "lock")
                         .fontWeight(.semibold)
                     if isShowingPassword {
-                        TextField("Password", text: $password)
+                        TextField("Password", text: $viewModel.password)
                             .font(.subheadline)
                             .padding(12)
                             .cornerRadius(12)
                     } else {
-                        SecureField("Password", text: $password)
+                        SecureField("Password", text: $viewModel.password)
                             .font(.subheadline)
                             .padding(12)
                             .cornerRadius(12)
@@ -73,7 +72,9 @@ struct LoginView: View {
 //                Login buttons
                 VStack(spacing: 15){
                     Button {
-//                        do something
+                        Task {
+                            try await viewModel.login()
+                        }
                     } label: {
                         Text("Login")
                     }
