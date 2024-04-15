@@ -83,7 +83,7 @@ struct ContentView: View {
             } else {
                 Group {
 //                    check if "$" is really necessary
-                    if $viewModel.userSession != nil {
+                    if viewModel.userSession != nil {
                         TabBar()
                     } else {
                         LoginView()

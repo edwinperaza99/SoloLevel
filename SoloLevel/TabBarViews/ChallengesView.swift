@@ -7,14 +7,25 @@
 
 import SwiftUI
 
-struct Challenge: Identifiable {
+class Challenge: Identifiable, ObservableObject {
     var id = UUID()
     var text: String
     var quantity: Int
+    @Published var achieved: Int = 0
+    var completed: Bool {
+        achieved == quantity
+    }
+    
+    init(text: String, quantity: Int) {
+           self.text = text
+           self.quantity = quantity
+       }
 }
 
 struct ChallengesView: View {
     @State private var showingAlert = false
+    @State private var allChallengesCompleted = true
+    @State private var experienceNotification = false
     
 //    timer related variables
     @State private var countdownTimer = ""
@@ -22,9 +33,9 @@ struct ChallengesView: View {
     @State private var isWaveActive = false
     
     @State private var challenges: [Challenge] = [
-        Challenge(text: "Push-ups", quantity: 100),
-        Challenge(text: "Sit-ups", quantity: 100),
-        Challenge(text: "Squats", quantity: 150),
+        Challenge(text: "Push-ups", quantity: 10),
+        Challenge(text: "Sit-ups", quantity: 30),
+        Challenge(text: "Squats", quantity: 20),
         Challenge(text: "Run", quantity: 10)
     ]
     
@@ -40,12 +51,22 @@ struct ChallengesView: View {
                     .foregroundColor(.green)
 //                daily challenges go in here
                 VStack(spacing: 20) {
-                    ForEach(challenges) { challenge in
+                    ForEach($challenges) { $challenge in
                         HStack{
                             Text("-\(challenge.text)")
                             Spacer()
-                            Text("\(challenge.quantity)")
+                            HStack {
+                                Picker("", selection: $challenge.achieved) {
+                                   ForEach(0...challenge.quantity, id: \.self) { number in
+                                       Text("\(number)").tag(number)
+                                   }
+                               }
+                                .pickerStyle(.menu)
+                               .accentColor(challenge.completed ? .white : .gray)
+                                Text("\(challenge.quantity)")
+                            }
                         }
+                        .customTextStyle()
                     }
                 }
                 .font(.title2)
@@ -68,6 +89,15 @@ struct ChallengesView: View {
                         .onReceive(timer) { _ in
                             updateTimer()
                         }
+                }
+                if allChallengesCompleted {
+                    Button("COLLECT XP") {
+                       experienceNotification = true
+                   }
+                   .customButtonStyle()
+//                   .sheet(isPresented: $showLevelUpView) {
+//                       LevelUpView()
+//                   }
                 }
             }
 //            TODO: add alert for when challenge has not been met
