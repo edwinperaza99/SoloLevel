@@ -21,7 +21,7 @@ struct SettingsView: View {
                 }
                 Section("Stats"){
                     Text("Change job")
-                    Text("Change")
+                    Text("Change titles")
                 }
                 Section("Logout") {
                     Button {
@@ -37,6 +37,8 @@ struct SettingsView: View {
                     }
                 }
             }
+            .navigationTitle("Settings")
+
         }
         .preferredColorScheme(.dark)
     }
