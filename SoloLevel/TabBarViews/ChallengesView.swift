@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-class Challenge: Identifiable, ObservableObject {
-    var id = UUID()
-    var text: String
-    var quantity: Int
-    @Published var achieved: Int = 0
-    var completed: Bool {
-        achieved == quantity
-    }
-    
-    init(text: String, quantity: Int) {
-           self.text = text
-           self.quantity = quantity
-       }
-}
 
 struct ChallengesView: View {
     @State private var showingAlert = false
