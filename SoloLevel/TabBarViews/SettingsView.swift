@@ -10,18 +10,33 @@ import SwiftUI
 struct SettingsView: View {
     var body: some View {
         NavigationStack {
-            List {
+            Form {
                 Section("Challenges") {
-                    Text("Edit challenges")
+                    NavigationLink {
+                        Text("Edit challenges")
+                    }
+                    NavigationLink {
+                        Text("Change reset time")
+                    }
                 }
                 Section("Player profile") {
-                    Text("Change username")
-                    Text("Change email")
-                    Text("Change password")
+                    NavigationLink {
+                        Text("Change username")
+                    }
+                    NavigationLink {
+                        Text("Change email")
+                    }
+                    NavigationLink {
+                        Text("Change password")
+                    }
                 }
                 Section("Stats"){
-                    Text("Change job")
-                    Text("Change titles")
+                    NavigationLink {
+                        Text("Change job")
+                    }
+                    NavigationLink {
+                        Text("Change titles")
+                    }
                 }
                 Section("Logout") {
                     Button {
