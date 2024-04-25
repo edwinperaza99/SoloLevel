@@ -23,6 +23,7 @@ struct EditChallengeView: View {
             }
         }
         .navigationTitle("Edit Challenge")
+        .preferredColorScheme(.dark)
     }
 }
 

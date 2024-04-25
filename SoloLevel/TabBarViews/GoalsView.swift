@@ -2,7 +2,7 @@
 //  GoalsView.swift
 //  SoloLevel
 //
-//  Created by csuftitan on 4/13/24.
+//  Created by Edwin on 4/13/24.
 //
 
 import SwiftUI
@@ -36,6 +36,7 @@ struct GoalsView: View {
                 .onDelete(perform: deleteGoal)
             }
             .navigationTitle("Goals")
+            .scrollBounceBehavior(.basedOnSize)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     EditButton()

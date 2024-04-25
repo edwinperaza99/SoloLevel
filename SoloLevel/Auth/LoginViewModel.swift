@@ -2,7 +2,7 @@
 //  LoginViewModel.swift
 //  SoloLevel
 //
-//  Created by csuftitan on 4/14/24.
+//  Created by Edwin on 4/14/24.
 //
 
 import Foundation

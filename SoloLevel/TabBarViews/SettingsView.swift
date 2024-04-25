@@ -2,7 +2,7 @@
 //  SettingsView.swift
 //  SoloLevel
 //
-//  Created by csuftitan on 4/13/24.
+//  Created by Edwin on 4/13/24.
 //
 
 import SwiftUI
@@ -20,13 +20,13 @@ struct SettingsView: View {
                     }
                 }
                 Section("Player profile") {
-//                    NavigationLink {
+//                    NavigationLink(destination: ) {
                         Text("Change username")
 //                    }
-//                    NavigationLink {
+//                    NavigationLink(destination: ) {
                         Text("Change email")
 //                    }
-//                    NavigationLink {
+//                    NavigationLink(destination: ) {
                         Text("Change password")
 //                    }
                 }
@@ -34,9 +34,9 @@ struct SettingsView: View {
                     NavigationLink(destination: ChangeJobView()) {
                         Text("Change job")
                     }
-//                    NavigationLink(destination: EditTitlesView() {
+                    NavigationLink(destination: EditTitlesView()) {
                         Text("Change titles")
-//                    }
+                    }
                 }
                 Section("Logout") {
                     Button {
@@ -53,6 +53,7 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("Settings")
+            .scrollBounceBehavior(.basedOnSize)
 
         }
         .preferredColorScheme(.dark)
