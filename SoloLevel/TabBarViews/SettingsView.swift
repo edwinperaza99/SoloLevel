@@ -12,31 +12,31 @@ struct SettingsView: View {
         NavigationStack {
             Form {
                 Section("Challenges") {
-                    NavigationLink {
+                    NavigationLink(destination: EditChallengesView()) {
                         Text("Edit challenges")
                     }
-                    NavigationLink {
+                    NavigationLink(destination: EditTimeView()) {
                         Text("Change reset time")
                     }
                 }
                 Section("Player profile") {
-                    NavigationLink {
+//                    NavigationLink {
                         Text("Change username")
-                    }
-                    NavigationLink {
+//                    }
+//                    NavigationLink {
                         Text("Change email")
-                    }
-                    NavigationLink {
+//                    }
+//                    NavigationLink {
                         Text("Change password")
-                    }
+//                    }
                 }
                 Section("Stats"){
-                    NavigationLink {
+                    NavigationLink(destination: ChangeJobView()) {
                         Text("Change job")
                     }
-                    NavigationLink {
+//                    NavigationLink(destination: EditTitlesView() {
                         Text("Change titles")
-                    }
+//                    }
                 }
                 Section("Logout") {
                     Button {
