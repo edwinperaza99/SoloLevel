@@ -5,6 +5,7 @@
 //  Created by Edwin on 4/25/24.
 //
 
+import SwiftData
 import SwiftUI
 
 struct AddGoalView: View {
@@ -12,7 +13,7 @@ struct AddGoalView: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var title = ""
-    @State private var description = ""
+    @State private var notes = ""
 //    @State private var dueDate: Date
     
     var body: some View {
@@ -22,12 +23,12 @@ struct AddGoalView: View {
                     TextField("Title", text: $title)
                 }
                 Section("Notes:") {
-                    TextEditor(text: $description)
+                    TextEditor(text: $notes)
                 }
                 Section {
                     Button("Save") {
 //                    TODO: add description as well
-                        let newGoal = Goal(title: title)
+                        let newGoal = Goal(title: title, notes: notes)
                         modelContext.insert(newGoal)
                         dismiss()
                     }
