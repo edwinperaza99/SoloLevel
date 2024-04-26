@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import SwiftData
 
-class Goals: Identifiable, ObservableObject {
-    var id = UUID()
-    var text: String
+@Model
+class Goal {
+    var title: String
 //    var date created
 //    var due date
-    init(text: String) {
-        self.text = text
+    init(title: String) {
+        self.title = title
     }
 }
