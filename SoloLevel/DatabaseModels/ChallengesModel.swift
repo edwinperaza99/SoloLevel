@@ -5,6 +5,7 @@
 //  Created by Edwin on 4/15/24.
 //
 
+import SwiftData
 import Foundation
 
 class Challenge: Identifiable, ObservableObject {
@@ -20,4 +21,14 @@ class Challenge: Identifiable, ObservableObject {
            self.text = text
            self.quantity = quantity
        }
+}
+
+@Model 
+class Challenges {
+    var challenge: [Challenge]
+    var dueDate: Date
+    init(challenge: [Challenge], dueDate: Date) {
+        self.challenge = challenge
+        self.dueDate = dueDate
+    }
 }
