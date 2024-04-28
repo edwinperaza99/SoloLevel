@@ -12,6 +12,7 @@ class Challenge: Identifiable, ObservableObject {
     var id = UUID()
     var text: String
     var quantity: Int
+    var measure: String?
     @Published var achieved: Int = 0
     var completed: Bool {
         achieved == quantity
@@ -23,9 +24,11 @@ class Challenge: Identifiable, ObservableObject {
        }
 }
 
-@Model 
+
+@Model
 class Challenges {
     var challenge: [Challenge]
+    
     var dueDate: Date
     init(challenge: [Challenge], dueDate: Date) {
         self.challenge = challenge
