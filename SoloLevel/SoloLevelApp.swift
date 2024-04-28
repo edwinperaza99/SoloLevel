@@ -47,5 +47,6 @@ struct SoloLevelApp: App {
             ContentView()
         }
         .modelContainer(for: Goal.self)
+        .modelContainer(for: Challenges.self)
     }
 }
