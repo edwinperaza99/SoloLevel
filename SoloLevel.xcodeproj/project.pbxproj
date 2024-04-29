@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A0D190E2BDB9AB30060F648 /* GoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0D190D2BDB9AB30060F648 /* GoalView.swift */; };
+		7A0D19102BDC60380060F648 /* EditNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0D190F2BDC60380060F648 /* EditNotesView.swift */; };
 		7A17C5AD2BCA0532002B4185 /* SoloLevelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C5AC2BCA0532002B4185 /* SoloLevelApp.swift */; };
 		7A17C5AF2BCA0532002B4185 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C5AE2BCA0532002B4185 /* ContentView.swift */; };
 		7A17C5B12BCA0536002B4185 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A17C5B02BCA0536002B4185 /* Assets.xcassets */; };
@@ -51,9 +53,22 @@
 		7A17C60C2BCB7829002B4185 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C60B2BCB7829002B4185 /* GoalsView.swift */; };
 		7A17C60E2BCB78E3002B4185 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C60D2BCB78E3002B4185 /* SettingsView.swift */; };
 		7A17C6112BCB9765002B4185 /* QuestNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C6102BCB9765002B4185 /* QuestNotice.swift */; };
+		7A17C6142BCBD042002B4185 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C6132BCBD042002B4185 /* ContentViewModel.swift */; };
+		7A17C6162BCCEA41002B4185 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C6152BCCEA41002B4185 /* LoginViewModel.swift */; };
+		7A17C6192BCDA018002B4185 /* ChallengesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C6182BCDA018002B4185 /* ChallengesModel.swift */; };
+		7A17C61B2BCDA0A9002B4185 /* GoalsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C61A2BCDA0A9002B4185 /* GoalsModel.swift */; };
+		7A17C61D2BCDA139002B4185 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C61C2BCDA139002B4185 /* PlayerModel.swift */; };
+		7A17C6682BD9B9D2002B4185 /* EditChallengesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C6672BD9B9D1002B4185 /* EditChallengesView.swift */; };
+		7A17C66A2BD9BA75002B4185 /* EditChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C6692BD9BA75002B4185 /* EditChallengeView.swift */; };
+		7A17C66C2BDAC6B7002B4185 /* EditTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C66B2BDAC6B7002B4185 /* EditTimeView.swift */; };
+		7A17C66E2BDAC734002B4185 /* ChangeJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C66D2BDAC734002B4185 /* ChangeJobView.swift */; };
+		7A17C6702BDAC774002B4185 /* EditTitlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C66F2BDAC774002B4185 /* EditTitlesView.swift */; };
+		7A17C6722BDB3ACD002B4185 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C6712BDB3ACD002B4185 /* AddGoalView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7A0D190D2BDB9AB30060F648 /* GoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalView.swift; sourceTree = "<group>"; };
+		7A0D190F2BDC60380060F648 /* EditNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotesView.swift; sourceTree = "<group>"; };
 		7A17C5A92BCA0532002B4185 /* SoloLevel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SoloLevel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A17C5AC2BCA0532002B4185 /* SoloLevelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloLevelApp.swift; sourceTree = "<group>"; };
 		7A17C5AE2BCA0532002B4185 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +87,17 @@
 		7A17C60B2BCB7829002B4185 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
 		7A17C60D2BCB78E3002B4185 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		7A17C6102BCB9765002B4185 /* QuestNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestNotice.swift; sourceTree = "<group>"; };
+		7A17C6132BCBD042002B4185 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		7A17C6152BCCEA41002B4185 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		7A17C6182BCDA018002B4185 /* ChallengesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesModel.swift; sourceTree = "<group>"; };
+		7A17C61A2BCDA0A9002B4185 /* GoalsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsModel.swift; sourceTree = "<group>"; };
+		7A17C61C2BCDA139002B4185 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
+		7A17C6672BD9B9D1002B4185 /* EditChallengesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengesView.swift; sourceTree = "<group>"; };
+		7A17C6692BD9BA75002B4185 /* EditChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeView.swift; sourceTree = "<group>"; };
+		7A17C66B2BDAC6B7002B4185 /* EditTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimeView.swift; sourceTree = "<group>"; };
+		7A17C66D2BDAC734002B4185 /* ChangeJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeJobView.swift; sourceTree = "<group>"; };
+		7A17C66F2BDAC774002B4185 /* EditTitlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitlesView.swift; sourceTree = "<group>"; };
+		7A17C6712BDB3ACD002B4185 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +157,9 @@
 		7A17C5AB2BCA0532002B4185 /* SoloLevel */ = {
 			isa = PBXGroup;
 			children = (
+				7A17C6662BD9B552002B4185 /* SettingsViews */,
+				7A17C6172BCD9FEE002B4185 /* DatabaseModels */,
+				7A17C6122BCBD020002B4185 /* Root */,
 				7A17C6002BCB6A04002B4185 /* Auth */,
 				7A17C5BC2BCA6CF3002B4185 /* components */,
 				7A17C60F2BCB7B10002B4185 /* TabBarViews */,
@@ -158,6 +187,9 @@
 				7A17C5BD2BCA6D11002B4185 /* Notice.swift */,
 				7A17C5BF2BCA7002002B4185 /* Modifiers.swift */,
 				7A17C6102BCB9765002B4185 /* QuestNotice.swift */,
+				7A17C6712BDB3ACD002B4185 /* AddGoalView.swift */,
+				7A0D190D2BDB9AB30060F648 /* GoalView.swift */,
+				7A0D190F2BDC60380060F648 /* EditNotesView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -169,6 +201,7 @@
 				7A17C5C52BCB28DF002B4185 /* SignupView.swift */,
 				7A17C6012BCB6A2F002B4185 /* AuthService.swift */,
 				7A17C6032BCB6C4F002B4185 /* RegistrationModel.swift */,
+				7A17C6152BCCEA41002B4185 /* LoginViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -182,6 +215,36 @@
 				7A17C6072BCB76E2002B4185 /* ProfileView.swift */,
 			);
 			path = TabBarViews;
+			sourceTree = "<group>";
+		};
+		7A17C6122BCBD020002B4185 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				7A17C6132BCBD042002B4185 /* ContentViewModel.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		7A17C6172BCD9FEE002B4185 /* DatabaseModels */ = {
+			isa = PBXGroup;
+			children = (
+				7A17C6182BCDA018002B4185 /* ChallengesModel.swift */,
+				7A17C61A2BCDA0A9002B4185 /* GoalsModel.swift */,
+				7A17C61C2BCDA139002B4185 /* PlayerModel.swift */,
+			);
+			path = DatabaseModels;
+			sourceTree = "<group>";
+		};
+		7A17C6662BD9B552002B4185 /* SettingsViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A17C6672BD9B9D1002B4185 /* EditChallengesView.swift */,
+				7A17C6692BD9BA75002B4185 /* EditChallengeView.swift */,
+				7A17C66B2BDAC6B7002B4185 /* EditTimeView.swift */,
+				7A17C66D2BDAC734002B4185 /* ChangeJobView.swift */,
+				7A17C66F2BDAC774002B4185 /* EditTitlesView.swift */,
+			);
+			path = SettingsViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,16 +354,29 @@
 				7A17C5C62BCB28E0002B4185 /* SignupView.swift in Sources */,
 				7A17C5AF2BCA0532002B4185 /* ContentView.swift in Sources */,
 				7A17C6082BCB76E2002B4185 /* ProfileView.swift in Sources */,
+				7A17C61B2BCDA0A9002B4185 /* GoalsModel.swift in Sources */,
+				7A17C6162BCCEA41002B4185 /* LoginViewModel.swift in Sources */,
+				7A17C66A2BD9BA75002B4185 /* EditChallengeView.swift in Sources */,
 				7A17C60C2BCB7829002B4185 /* GoalsView.swift in Sources */,
 				7A17C5BE2BCA6D11002B4185 /* Notice.swift in Sources */,
+				7A17C66E2BDAC734002B4185 /* ChangeJobView.swift in Sources */,
 				7A17C60A2BCB7777002B4185 /* ChallengesView.swift in Sources */,
 				7A17C5AD2BCA0532002B4185 /* SoloLevelApp.swift in Sources */,
 				7A17C5C42BCA77F2002B4185 /* LoginView.swift in Sources */,
+				7A17C61D2BCDA139002B4185 /* PlayerModel.swift in Sources */,
+				7A17C6192BCDA018002B4185 /* ChallengesModel.swift in Sources */,
 				7A17C5C02BCA7002002B4185 /* Modifiers.swift in Sources */,
+				7A17C6682BD9B9D2002B4185 /* EditChallengesView.swift in Sources */,
 				7A17C6042BCB6C50002B4185 /* RegistrationModel.swift in Sources */,
+				7A17C6722BDB3ACD002B4185 /* AddGoalView.swift in Sources */,
 				7A17C6062BCB7187002B4185 /* TabBar.swift in Sources */,
 				7A17C6022BCB6A2F002B4185 /* AuthService.swift in Sources */,
 				7A17C60E2BCB78E3002B4185 /* SettingsView.swift in Sources */,
+				7A17C6702BDAC774002B4185 /* EditTitlesView.swift in Sources */,
+				7A0D19102BDC60380060F648 /* EditNotesView.swift in Sources */,
+				7A0D190E2BDB9AB30060F648 /* GoalView.swift in Sources */,
+				7A17C6142BCBD042002B4185 /* ContentViewModel.swift in Sources */,
+				7A17C66C2BDAC6B7002B4185 /* EditTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

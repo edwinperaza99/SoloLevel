@@ -27,11 +27,11 @@ class Challenge: Identifiable, ObservableObject {
 
 @Model
 class Challenges {
-    var challenge: [Challenge]
+//    var challenge: [Challenge]
     
     var dueDate: Date
-    init(challenge: [Challenge], dueDate: Date) {
-        self.challenge = challenge
+    init(dueDate: Date) {
+//        self.challenge = challenge
         self.dueDate = dueDate
     }
 }
