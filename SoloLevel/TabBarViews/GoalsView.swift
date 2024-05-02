@@ -30,7 +30,19 @@ struct GoalsView: View {
             List {
                 ForEach(goals) { goal in
                     NavigationLink(value: goal){
-                        Text(goal.title)
+                        HStack {
+                           VStack(alignment: .leading, spacing: 4) {
+                               Text(goal.title)
+                                   .font(.headline)
+                               Text(goal.statusDescription)
+                                   .font(.subheadline)
+                                   .foregroundColor(colorForStatus(goal.statusDescription))
+                           }
+                           Spacer()
+                           Text(goal.dueDateDescription())
+                               .font(.subheadline)
+                               .foregroundColor(.secondary)
+                       }
                     }
                 }
                 .onDelete(perform: deleteGoal)
@@ -58,6 +70,19 @@ struct GoalsView: View {
         }
         .preferredColorScheme(.dark)
     }
+    
+    private func colorForStatus(_ status: String) -> Color {
+            switch status {
+            case "Completed":
+                return .green
+            case "Late":
+                return .red
+            case "In Progress":
+                return .yellow
+            default:
+                return .gray
+            }
+        }
 }
 
 #Preview {
