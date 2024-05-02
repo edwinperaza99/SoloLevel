@@ -14,7 +14,8 @@ struct AddGoalView: View {
     
     @State private var title = ""
     @State private var notes = ""
-//    @State private var dueDate: Date
+    @State private var dueDate: Date? = nil
+    @State private var showDueDatePicker = false
     
     var body: some View {
         NavigationStack {
@@ -22,15 +23,33 @@ struct AddGoalView: View {
                 Section("Goal title:"){
                     TextField("Title", text: $title)
                 }
+                Section {
+                    Button("Set a Due Date Now!") {
+                        showDueDatePicker.toggle()
+                    }
+                    if showDueDatePicker {
+                        DatePicker(
+                            "Due Date",
+                            selection: Binding(get: {
+                                dueDate ?? Date() // Provide a current date if dueDate is nil
+                            }, set: {
+                                dueDate = $0
+                            }),
+                            displayedComponents: .date
+                        )
+                    }
+                }
+                
                 Section("Notes:") {
                     TextEditor(text: $notes)
                 }
-                Section {
-                    Button("Save") {
-//                    TODO: add description as well
-                        let newGoal = Goal(title: title, notes: notes)
-                        modelContext.insert(newGoal)
-                        dismiss()
+                if !title.isEmpty{
+                    Section {
+                        Button("Save") {
+                            let newGoal = Goal(title: title, notes: notes)
+                            modelContext.insert(newGoal)
+                            dismiss()
+                        }
                     }
                 }
             }
