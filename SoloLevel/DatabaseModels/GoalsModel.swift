@@ -25,12 +25,22 @@ class Goal {
       }
     
     func dueDateDescription() -> String {
-           if let dueDate = dueDate {
-               let dateFormatter = DateFormatter()
-               dateFormatter.dateStyle = .medium
-               return dateFormatter.string(from: dueDate)
-           } else {
-               return "No due date"
-           }
+       if let dueDate = dueDate {
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateStyle = .medium
+           return dateFormatter.string(from: dueDate)
+       } else {
+           return "No due date"
        }
+   }
+    
+    var statusDescription: String {
+      if completed {
+          return "Completed"
+      } else if let dueDate = dueDate, Date() > dueDate {
+          return "Late"
+      } else {
+          return "In Progress"
+      }
+    }
 }
