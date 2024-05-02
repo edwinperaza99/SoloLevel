@@ -13,6 +13,7 @@ struct GoalView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showingDeleteAlert = false
     @State private var editingNotes = false
+    @State private var showDueDatePicker = false
     
     @Bindable var goal: Goal
     
@@ -20,6 +21,23 @@ struct GoalView: View {
         Form {
             Section("Goal:") {
                 TextField(goal.title, text: $goal.title)
+                Toggle(isOn: $goal.completed) {
+                    Text(goal.completed ? "Completed" : "Mark as Completed")
+                }
+                Button(goal.dueDateDescription()) {
+                    showDueDatePicker.toggle()
+                }
+                if showDueDatePicker {
+                  DatePicker(
+                      "Change due date",
+                      selection: Binding(get: {
+                          goal.dueDate ?? Date() // Provide a default date if dueDate is nil
+                      }, set: {
+                          goal.dueDate = $0
+                      }),
+                      displayedComponents: .date
+                  ).datePickerStyle(GraphicalDatePickerStyle()) // Makes the picker more visually engaging
+              }
             }
             Section("Notes:") {
                 Button(action: {
