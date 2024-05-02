@@ -15,6 +15,15 @@ class Goal {
     var dateCreated: Date
     var dueDate: Date?
     var completed: Bool
+    var statusDescription: String {
+      if completed {
+          return "Completed"
+      } else if let dueDate = dueDate, Date() > dueDate {
+          return "Late"
+      } else {
+          return "In Progress"
+      }
+    }
     
     init(title: String, notes: String, dateCreated: Date = Date(), dueDate: Date? = nil, completed: Bool = false) {
           self.title = title
@@ -33,14 +42,4 @@ class Goal {
            return "No due date"
        }
    }
-    
-    var statusDescription: String {
-      if completed {
-          return "Completed"
-      } else if let dueDate = dueDate, Date() > dueDate {
-          return "Late"
-      } else {
-          return "In Progress"
-      }
-    }
 }
