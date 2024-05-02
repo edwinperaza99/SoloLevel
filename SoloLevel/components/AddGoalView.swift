@@ -46,7 +46,7 @@ struct AddGoalView: View {
                 if !title.isEmpty{
                     Section {
                         Button("Save") {
-                            let newGoal = Goal(title: title, notes: notes)
+                            let newGoal = Goal(title: title, notes: notes, dueDate: dueDate)
                             modelContext.insert(newGoal)
                             dismiss()
                         }
