@@ -12,10 +12,25 @@ import SwiftData
 class Goal {
     var title: String
     var notes: String
-//    var date created
-//    var due date
-    init(title: String, notes: String) {
-        self.title = title
-        self.notes = notes
-    }
+    var dateCreated: Date
+    var dueDate: Date?
+    var completed: Bool
+    
+    init(title: String, notes: String, dateCreated: Date = Date(), dueDate: Date? = nil, completed: Bool = false) {
+          self.title = title
+          self.notes = notes
+          self.dateCreated = dateCreated
+          self.dueDate = dueDate
+          self.completed = completed
+      }
+    
+    func dueDateDescription() -> String {
+           if let dueDate = dueDate {
+               let dateFormatter = DateFormatter()
+               dateFormatter.dateStyle = .medium
+               return dateFormatter.string(from: dueDate)
+           } else {
+               return "No due date"
+           }
+       }
 }
