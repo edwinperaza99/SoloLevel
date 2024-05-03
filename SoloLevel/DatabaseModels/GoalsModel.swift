@@ -24,6 +24,29 @@ class Goal {
           return "In Progress"
       }
     }
+    var daysLeft: String {
+          guard let dueDate = dueDate else {
+              return "No due date"
+          }
+          
+          let calendar = Calendar.current
+          let currentDate = Date()
+          
+          let components = calendar.dateComponents([.day], from: currentDate, to: dueDate)
+          
+          if let days = components.day {
+              switch days {
+              case 0:
+                  return "Due today"
+              case ..<0:
+                  return "Past due"
+              default:
+                  return "\(days) days left"
+              }
+          } else {
+              return "No due date"
+          }
+      }
     
     init(title: String, notes: String, dateCreated: Date = Date(), dueDate: Date? = nil, completed: Bool = false) {
           self.title = title

@@ -45,7 +45,7 @@ struct GoalsList: View {
                                .foregroundColor(colorForStatus(goal.statusDescription))
                        }
                        Spacer()
-                       Text(goal.dueDateDescription())
+                       Text(goal.daysLeft)
                            .font(.subheadline)
                            .foregroundColor(.secondary)
                    }
