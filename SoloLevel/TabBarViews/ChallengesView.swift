@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 
 struct ChallengesView: View {
@@ -17,20 +18,17 @@ struct ChallengesView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var isWaveActive = false
     
-    @State private var challenges: [Challenge] = [
-        Challenge(text: "Push-ups", quantity: 10),
-        Challenge(text: "Sit-ups", quantity: 12),
-        Challenge(text: "Squats", quantity: 5),
-        Challenge(text: "Run", quantity: 10)
-    ]
+// TODO: ADD CHALLENGES CODE
+    @Query var challenges: [Challenge]
     
     private var allChallengesCompleted: Bool {
-           challenges.allSatisfy { $0.completed }
-       }
+        !challenges.isEmpty && challenges.allSatisfy { $0.completed }
+    }
+
     
     var body: some View {
         ZStack {
-            VStack(spacing: 20) {
+            VStack(spacing: 15) {
                 QuestNotice()
                 
                 Text("Daily quest - Train to become a formidable combatant")
@@ -39,19 +37,25 @@ struct ChallengesView: View {
                     .customTextStyle()
                     .foregroundColor(.green)
 //                daily challenges go in here
-                VStack(spacing: 20) {
-                    ForEach($challenges) { $challenge in
-                        HStack{
+                ScrollView {
+                    ForEach(challenges.indices, id: \.self) { index in
+                        let challenge = challenges[index] // Get the challenge at the current index
+                        HStack {
                             Text("-\(challenge.text)")
                             Spacer()
                             HStack {
-                                Picker("", selection: $challenge.achieved) {
-                                   ForEach(0...challenge.quantity, id: \.self) { number in
-                                       Text("\(number)").tag(number)
-                                   }
-                               }
+                                Picker("", selection: Binding(
+                                    get: { challenge.achieved }, // Getter
+                                    set: { newValue in 
+                                        challenges[index].achieved = newValue
+                                    } // Setter
+                                )) {
+                                    ForEach(0...challenge.quantity, id: \.self) { number in
+                                        Text("\(number)").tag(number)
+                                    }
+                                }
                                 .pickerStyle(.menu)
-                               .accentColor(challenge.completed ? .white : .gray)
+                                .accentColor(challenge.completed ? .white : .gray)
                                 Text("\(challenge.quantity)")
                             }
                         }
