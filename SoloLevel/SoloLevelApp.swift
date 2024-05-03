@@ -46,7 +46,7 @@ struct SoloLevelApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [Goal.self, Challenges.self])
+        .modelContainer(for: [Goal.self, Challenge.self])
 //        .modelContainer(for: Challenges.self)
     }
 }

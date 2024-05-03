@@ -8,7 +8,7 @@
 import SwiftData
 import Foundation
 
-class Challenge: Identifiable, ObservableObject {
+class Challenge1: Identifiable, ObservableObject {
     var id = UUID()
     var text: String
     var quantity: Int
@@ -26,12 +26,18 @@ class Challenge: Identifiable, ObservableObject {
 
 
 @Model
-class Challenges {
-//    var challenge: [Challenge]
+class Challenge {
+    var text: String
+    var quantity: Int
+    var achieved: Int
+    var completed: Bool
+    var measure: String?
     
-    var dueDate: Date
-    init(dueDate: Date) {
-//        self.challenge = challenge
-        self.dueDate = dueDate
+    init(text: String, quantity: Int, achieved: Int = 0, completed: Bool = false, measure: String? = nil) {
+        self.text = text
+        self.quantity = quantity
+        self.achieved = achieved
+        self.completed = completed
+        self.measure = measure
     }
 }

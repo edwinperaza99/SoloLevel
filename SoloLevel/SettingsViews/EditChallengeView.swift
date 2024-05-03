@@ -22,13 +22,14 @@ struct EditChallengeView: View {
             }
             Section("Repetitions/quantity:"){
                 TextField("\(challenge.quantity)", value: $challenge.quantity, formatter: NumberFormatter())
+                    .keyboardType(.numberPad)
             }
 //            Section("Measurement:"){
 //                TextField(challenge.measure, text: $challenge.measure)
 //            }
         }
         .navigationTitle("Edit Challenge")
-//        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitleDisplayMode(.inline)
         .preferredColorScheme(.dark)
         .scrollBounceBehavior(.basedOnSize)
         .alert("Delete challenge", isPresented: $showingDeleteAlert) {
@@ -52,7 +53,7 @@ struct EditChallengeView: View {
 #Preview {
     do {
        let config = ModelConfiguration(isStoredInMemoryOnly: true)
-       let container = try ModelContainer(for: Goal.self, configurations: config)
+       let container = try ModelContainer(for: Challenge.self, configurations: config)
         let example = Challenge(text: "Test challenge", quantity: 20)
 
        return EditChallengeView(challenge: example)
