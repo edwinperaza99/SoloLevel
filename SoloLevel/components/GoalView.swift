@@ -24,8 +24,12 @@ struct GoalView: View {
                 Toggle(isOn: $goal.completed) {
                     Text(goal.completed ? "Completed" : "Mark as Completed")
                 }
-                Button(goal.dueDateDescription()) {
-                    showDueDatePicker.toggle()
+                Label("Created: \(goal.dateCreatedDescription())", systemImage: "calendar")
+                HStack {
+                    Label("Due:", systemImage: "calendar.badge.clock")
+                    Button(goal.dueDateDescription()) {
+                        showDueDatePicker.toggle()
+                    }
                 }
                 if showDueDatePicker {
                   DatePicker(

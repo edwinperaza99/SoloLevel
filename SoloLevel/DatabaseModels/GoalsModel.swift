@@ -65,4 +65,10 @@ class Goal {
            return "No due date"
        }
    }
+    
+    func dateCreatedDescription() -> String {
+       let dateFormatter = DateFormatter()
+       dateFormatter.dateStyle = .medium
+       return dateFormatter.string(from: dateCreated)
+   }
 }
