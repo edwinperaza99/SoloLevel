@@ -10,9 +10,25 @@ import SwiftUI
 
 struct EditNotesView: View {
     @Bindable var goal: Goal
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        TextEditor(text: $goal.notes)
+        NavigationStack {
+            Section {
+                Text("Write some notes")
+                    .font(.title2)
+                    .foregroundColor(.secondary)
+            }
+            Section {
+                TextEditor(text: $goal.notes)
+            }
+            Section {
+                Button("Save") {
+                    dismiss()
+                }
+            }
+        }
+        .padding()
     }
 }
 
