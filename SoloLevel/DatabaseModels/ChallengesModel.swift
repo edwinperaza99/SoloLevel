@@ -8,36 +8,20 @@
 import SwiftData
 import Foundation
 
-class Challenge1: Identifiable, ObservableObject {
-    var id = UUID()
-    var text: String
-    var quantity: Int
-    var measure: String?
-    @Published var achieved: Int = 0
-    var completed: Bool {
-        achieved == quantity
-    }
-    
-    init(text: String, quantity: Int) {
-           self.text = text
-           self.quantity = quantity
-       }
-}
-
-
 @Model
 class Challenge {
     var text: String
     var quantity: Int
     var achieved: Int
-    var completed: Bool
+    var completed: Bool {
+        achieved == quantity
+    }
     var measure: String?
     
-    init(text: String, quantity: Int, achieved: Int = 0, completed: Bool = false, measure: String? = nil) {
+    init(text: String, quantity: Int, achieved: Int = 0, measure: String? = nil) {
         self.text = text
         self.quantity = quantity
         self.achieved = achieved
-        self.completed = completed
         self.measure = measure
     }
 }
