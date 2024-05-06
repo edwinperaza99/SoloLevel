@@ -15,18 +15,12 @@ struct SettingsView: View {
                     NavigationLink(destination: EditChallengesView()) {
                         Text("Edit challenges")
                     }
-                    NavigationLink(destination: EditTimeView()) {
-                        Text("Change reset time")
-                    }
                 }
-                Section("Player profile") {
-//                    NavigationLink(destination: ) {
-                        Text("Change username")
-//                    }
-//                    NavigationLink(destination: ) {
+                Section("Account") {
+//                    NavigationLink(destination: ChangeEmailView()) {
                         Text("Change email")
 //                    }
-//                    NavigationLink(destination: ) {
+//                    NavigationLink(destination: ChangePasswordView()) {
                         Text("Change password")
 //                    }
                 }
@@ -37,8 +31,17 @@ struct SettingsView: View {
                     NavigationLink(destination: EditTitlesView()) {
                         Text("Change titles")
                     }
+//                    NavigationLink(destination: ) {
+                        Text("Change username")
+//                    }
                 }
-                Section("Logout") {
+                Section {
+                    NavigationLink(destination: AboutView()) {
+                        Text("About SoloLevel")
+                    }
+//                    NavigationLink(destination: InstructionsView()) {
+                        Text("Instructions")
+//                    }
                     Button {
                         AuthService.shared.signOut()
                         print("Button to log out pressed")
