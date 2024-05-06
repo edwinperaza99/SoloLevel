@@ -41,7 +41,7 @@ struct ChallengesView: View {
                     ForEach(challenges.indices, id: \.self) { index in
                         let challenge = challenges[index] // Get the challenge at the current index
                         HStack {
-                            Text("-\(challenge.text)")
+                            Text("- \(challenge.text)")
                             Spacer()
                             HStack {
                                 Picker("", selection: Binding(
@@ -91,7 +91,9 @@ struct ChallengesView: View {
                }
                .customButtonStyle()
                .opacity(allChallengesCompleted ? 1 : 0)
-              .disabled(!allChallengesCompleted)
+               .disabled(!allChallengesCompleted)
+               .padding(.bottom, 16)
+            
 //                   .sheet(isPresented: $showLevelUpView) {
 //                       LevelUpView()
 //                   }
