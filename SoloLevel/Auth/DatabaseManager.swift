@@ -44,10 +44,15 @@ class DatabaseManager {
         
         try await Firestore.firestore().collection("users").document(userId).setData(from: newUser)
     }
-    func getUserProfile() async throws {
+    func getUserProfile() async throws -> User {
         guard let userId = AuthService.shared.userSession?.uid else {
              throw NSError(domain: "AuthServiceError", code: -1, userInfo: [NSLocalizedDescriptionKey: "User session not available."])
          }
         let snapshot = try await Firestore.firestore().collection("users").document(userId).getDocument()
+        guard let data = snapshot.data() else {
+            throw URLError(.badServerResponse)
+        }
+        let user = try snapshot.data(as: User.self)
+        return user
     }
 }
