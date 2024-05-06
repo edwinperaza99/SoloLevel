@@ -33,6 +33,9 @@ class AuthService {
             let result = try await Auth.auth().createUser(withEmail: email, password: password)
             self.userSession = result.user
             print("Created new user: \(result.user.uid)")
+//            create database collection for user
+            try await DatabaseManager.shared.createNewUser()
+            print("New user has been added to database")
         } catch {
             print("Error: \(error.localizedDescription)")
         }
