@@ -39,9 +39,9 @@ struct SettingsView: View {
                     NavigationLink(destination: AboutView()) {
                         Text("About SoloLevel")
                     }
-//                    NavigationLink(destination: InstructionsView()) {
+                    NavigationLink(destination: InstructionsView()) {
                         Text("Instructions")
-//                    }
+                    }
                     Button {
                         AuthService.shared.signOut()
                         print("Button to log out pressed")
