@@ -10,19 +10,16 @@ import SwiftUI
 struct AboutView: View {
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                // App Information
-                VStack(spacing: 0) {
-                    RectangleDivider()
-                    Text("About Solo Level")
-                    .font(.largeTitle)
-                    .bold()
-                    .textCase(.uppercase)
-                    RectangleDivider()
-                }
-                
+            VStack() {
                 Text("Solo Level is a self-improvement app inspired by the themes of progression and personal growth, akin to the journey of Sung Jinwoo in the popular manwha and anime series *Solo Leveling*. The app integrates a gamified level system where users can set daily challenges and earn experience points upon completion, with a focus on fostering consistency and discipline in personal goals.")
                     .font(.body)
+                    .padding(.leading, 10)
+                
+                Image(.sung)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical)
                 
                 // Features Section
                 Text("Features")
@@ -39,8 +36,8 @@ struct AboutView: View {
                 
                 Spacer()
             }
-            .padding()
         }
+        .navigationTitle("About")
     }
 }
 
@@ -56,6 +53,7 @@ struct FeatureItemView: View {
             Text(description)
                 .font(.body)
                 .multilineTextAlignment(.leading)
+                .foregroundColor(.secondary)
         }
     }
 }
