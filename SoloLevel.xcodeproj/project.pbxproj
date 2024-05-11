@@ -64,6 +64,10 @@
 		7A17C66E2BDAC734002B4185 /* ChangeJobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C66D2BDAC734002B4185 /* ChangeJobView.swift */; };
 		7A17C6702BDAC774002B4185 /* EditTitlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C66F2BDAC774002B4185 /* EditTitlesView.swift */; };
 		7A17C6722BDB3ACD002B4185 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A17C6712BDB3ACD002B4185 /* AddGoalView.swift */; };
+		7A8536EF2BE582E8001DBD7F /* AddChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8536EE2BE582E8001DBD7F /* AddChallengeView.swift */; };
+		7A8536F32BE8BE7F001DBD7F /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8536F22BE8BE7F001DBD7F /* DatabaseManager.swift */; };
+		7A8536F52BE958FD001DBD7F /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8536F42BE958FD001DBD7F /* AboutView.swift */; };
+		7A8536F72BEA0E43001DBD7F /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8536F62BEA0E43001DBD7F /* InstructionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +102,10 @@
 		7A17C66D2BDAC734002B4185 /* ChangeJobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeJobView.swift; sourceTree = "<group>"; };
 		7A17C66F2BDAC774002B4185 /* EditTitlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitlesView.swift; sourceTree = "<group>"; };
 		7A17C6712BDB3ACD002B4185 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
+		7A8536EE2BE582E8001DBD7F /* AddChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengeView.swift; sourceTree = "<group>"; };
+		7A8536F22BE8BE7F001DBD7F /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		7A8536F42BE958FD001DBD7F /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		7A8536F62BEA0E43001DBD7F /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +198,8 @@
 				7A17C6712BDB3ACD002B4185 /* AddGoalView.swift */,
 				7A0D190D2BDB9AB30060F648 /* GoalView.swift */,
 				7A0D190F2BDC60380060F648 /* EditNotesView.swift */,
+				7A8536F42BE958FD001DBD7F /* AboutView.swift */,
+				7A8536F62BEA0E43001DBD7F /* InstructionsView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -202,6 +212,7 @@
 				7A17C6012BCB6A2F002B4185 /* AuthService.swift */,
 				7A17C6032BCB6C4F002B4185 /* RegistrationModel.swift */,
 				7A17C6152BCCEA41002B4185 /* LoginViewModel.swift */,
+				7A8536F22BE8BE7F001DBD7F /* DatabaseManager.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -243,6 +254,7 @@
 				7A17C66B2BDAC6B7002B4185 /* EditTimeView.swift */,
 				7A17C66D2BDAC734002B4185 /* ChangeJobView.swift */,
 				7A17C66F2BDAC774002B4185 /* EditTitlesView.swift */,
+				7A8536EE2BE582E8001DBD7F /* AddChallengeView.swift */,
 			);
 			path = SettingsViews;
 			sourceTree = "<group>";
@@ -350,16 +362,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A8536EF2BE582E8001DBD7F /* AddChallengeView.swift in Sources */,
 				7A17C6112BCB9765002B4185 /* QuestNotice.swift in Sources */,
 				7A17C5C62BCB28E0002B4185 /* SignupView.swift in Sources */,
 				7A17C5AF2BCA0532002B4185 /* ContentView.swift in Sources */,
+				7A8536F52BE958FD001DBD7F /* AboutView.swift in Sources */,
 				7A17C6082BCB76E2002B4185 /* ProfileView.swift in Sources */,
 				7A17C61B2BCDA0A9002B4185 /* GoalsModel.swift in Sources */,
 				7A17C6162BCCEA41002B4185 /* LoginViewModel.swift in Sources */,
 				7A17C66A2BD9BA75002B4185 /* EditChallengeView.swift in Sources */,
+				7A8536F32BE8BE7F001DBD7F /* DatabaseManager.swift in Sources */,
 				7A17C60C2BCB7829002B4185 /* GoalsView.swift in Sources */,
 				7A17C5BE2BCA6D11002B4185 /* Notice.swift in Sources */,
 				7A17C66E2BDAC734002B4185 /* ChangeJobView.swift in Sources */,
+				7A8536F72BEA0E43001DBD7F /* InstructionsView.swift in Sources */,
 				7A17C60A2BCB7777002B4185 /* ChallengesView.swift in Sources */,
 				7A17C5AD2BCA0532002B4185 /* SoloLevelApp.swift in Sources */,
 				7A17C5C42BCA77F2002B4185 /* LoginView.swift in Sources */,

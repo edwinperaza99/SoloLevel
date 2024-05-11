@@ -21,7 +21,7 @@ struct ChallengesList: View {
     var body: some View {
         List {
            ForEach(challenges) { challenge in
-               NavigationLink(value: challenge){
+               NavigationLink(destination: EditChallengeView(challenge: challenge)){
                   Text(challenge.text)
                       .font(.headline)
                }
@@ -45,9 +45,6 @@ struct EditChallengesView: View {
         NavigationStack {
             ChallengesList(sortOrder: sortOrder)
             .navigationTitle("Edit Challenges")
-            .navigationDestination(for: Challenge.self) { challenge in
-               EditChallengeView(challenge: challenge)
-           }
             .scrollBounceBehavior(.basedOnSize)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
