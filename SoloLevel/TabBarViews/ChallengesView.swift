@@ -11,7 +11,6 @@ import SwiftData
 
 struct ChallengesView: View {
     @State private var showingAlert = false
-    @State private var experienceNotification = false
     
 //    timer related variables
     @State private var countdownTimer = ""
@@ -85,10 +84,17 @@ struct ChallengesView: View {
                 }
              
 //                    button to collect xp only appears when challenges are completed
-                Button("COLLECT XP") {
-                   experienceNotification = true
-//                        handleCall to add points to redeem in profile
-               }
+                Button("Level Up") {
+                    Task {
+                        do {
+                            try await DatabaseManager.shared.levelUpUser()
+                            // Show success message
+                        } catch {
+                            // Handle errors, perhaps by showing an alert
+                            print("Error leveling up: \(error)")
+                        }
+                    }
+                }
                .customButtonStyle()
                .opacity(allChallengesCompleted ? 1 : 0)
                .disabled(!allChallengesCompleted)
