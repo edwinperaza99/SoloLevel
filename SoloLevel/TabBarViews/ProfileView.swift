@@ -11,6 +11,7 @@ class ProfileViewModel: ObservableObject {
     @Published var user: User?
     @Published var isLoading = false
     @Published var errorMessage = ""
+    @Published var lastLevelUp: Date?
 
     func fetchUserProfile() {
         isLoading = true
@@ -18,10 +19,7 @@ class ProfileViewModel: ObservableObject {
             do {
                 user = try await DatabaseManager.shared.getUserProfile()
                 isLoading = false
-                guard let name = user?.name else {
-                   return  // Exit the function if there's no name
-               }
-               print(name)  // If name is not nil, print it
+                lastLevelUp = user?.lastLevelUp
             } catch {
                 errorMessage = "Failed to load profile: \(error.localizedDescription)"
                 isLoading = false

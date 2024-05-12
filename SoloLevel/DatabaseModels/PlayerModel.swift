@@ -24,4 +24,5 @@ struct User: Encodable, Decodable {
     let sense: Int
     let mind: Int
     let ability: String
+    var lastLevelUp: Date?
 }

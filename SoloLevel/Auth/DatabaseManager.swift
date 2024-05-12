@@ -68,6 +68,13 @@ class DatabaseManager {
             throw URLError(.badServerResponse)
         }
         let user = try snapshot.data(as: User.self)
+        
+        // Check if the user can level up today
+          let calendar = Calendar.current
+          if let lastLevelUp = user.lastLevelUp, calendar.isDateInToday(lastLevelUp) {
+              // User has already leveled up today, handle appropriately
+              throw NSError(domain: "LevelUpError", code: 100, userInfo: [NSLocalizedDescriptionKey: "You can only level up once per day."])
+          }
 
         // Calculate new stats
         let newLevel = user.level + 1
@@ -90,7 +97,8 @@ class DatabaseManager {
             "agility": newAgility,
             "intelligence": newIntelligence,
             "sense": newSense,
-            "mind": newMind
+            "mind": newMind,
+            "lastLevelUp": Date()  // Record the current time as the last level-up time
         ])
     }
 }

@@ -10,6 +10,7 @@ import SwiftData
 
 
 struct ChallengesView: View {
+    @ObservedObject private var viewModel = ProfileViewModel()
     @State private var showingAlert = false
     
 //    timer related variables
@@ -22,6 +23,14 @@ struct ChallengesView: View {
     
     private var allChallengesCompleted: Bool {
         !challenges.isEmpty && challenges.allSatisfy { $0.completed }
+    }
+    
+    @State private var lastLevelUpDate: Date?
+    var canLevelUp: Bool {
+        if let lastLevelUpDate = lastLevelUpDate {
+            return allChallengesCompleted && !Calendar.current.isDateInToday(lastLevelUpDate)
+        }
+        return allChallengesCompleted  // Allow leveling up if never done before
     }
 
     
@@ -96,9 +105,15 @@ struct ChallengesView: View {
                     }
                 }
                .customButtonStyle()
-               .opacity(allChallengesCompleted ? 1 : 0)
-               .disabled(!allChallengesCompleted)
+               .opacity(canLevelUp ? 1 : 0)
+               .disabled(!canLevelUp)
                .padding(.bottom, 16)
+               .onAppear {
+                   viewModel.fetchUserProfile()
+                   guard let lastLevelUpDate = viewModel.user?.lastLevelUp else {
+                       return
+                   }
+               }
             
 //                   .sheet(isPresented: $showLevelUpView) {
 //                       LevelUpView()
