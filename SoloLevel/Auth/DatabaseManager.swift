@@ -44,6 +44,7 @@ class DatabaseManager {
         
         try await Firestore.firestore().collection("users").document(userId).setData(from: newUser)
     }
+    
     func getUserProfile() async throws -> User {
         guard let userId = AuthService.shared.userSession?.uid else {
              throw NSError(domain: "AuthServiceError", code: -1, userInfo: [NSLocalizedDescriptionKey: "User session not available."])
@@ -54,5 +55,42 @@ class DatabaseManager {
         }
         let user = try snapshot.data(as: User.self)
         return user
+    }
+    
+    func levelUpUser() async throws {
+        guard let userId = AuthService.shared.userSession?.uid else {
+            throw NSError(domain: "AuthServiceError", code: -1, userInfo: [NSLocalizedDescriptionKey: "User session not available."])
+        }
+
+        let snapshot = try await Firestore.firestore().collection("users").document(userId).getDocument()
+
+        guard let data = snapshot.data() else {
+            throw URLError(.badServerResponse)
+        }
+        let user = try snapshot.data(as: User.self)
+
+        // Calculate new stats
+        let newLevel = user.level + 1
+        let newHp = user.hp + Int(Double(user.hp) * 0.1)  // Increase by 10%
+        let newMp = user.mp + Int(Double(user.mp) * 0.1)  // Increase by 10%
+        let newStrength = user.strength + 5  // Increment by 5 (example)
+        let newHealth = user.health + 5  // Increment by 5
+        let newAgility = user.agility + 5  // Increment by 5
+        let newIntelligence = user.intelligence + 5  // Increment by 5
+        let newSense = user.sense + 5  // Increment by 5
+        let newMind = user.mind + 5  // Increment by 5
+
+        // Update Firestore
+        try await Firestore.firestore().collection("users").document(userId).updateData([
+            "level": newLevel,
+            "hp": newHp,
+            "mp": newMp,
+            "strength": newStrength,
+            "health": newHealth,
+            "agility": newAgility,
+            "intelligence": newIntelligence,
+            "sense": newSense,
+            "mind": newMind
+        ])
     }
 }
