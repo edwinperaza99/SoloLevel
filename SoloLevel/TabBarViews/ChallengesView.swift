@@ -26,9 +26,12 @@ struct ChallengesView: View {
     }
     
     @State private var lastLevelUpDate: Date?
+    
     var canLevelUp: Bool {
         if let lastLevelUpDate = lastLevelUpDate {
-            return allChallengesCompleted && !Calendar.current.isDateInToday(lastLevelUpDate)
+            let localLastLevelUp = Calendar.current.startOfDay(for: lastLevelUpDate)
+            let today = Calendar.current.startOfDay(for: Date())
+            return allChallengesCompleted && (localLastLevelUp != today)
         }
         return allChallengesCompleted  // Allow leveling up if never done before
     }
