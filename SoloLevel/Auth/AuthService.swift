@@ -45,4 +45,14 @@ class AuthService {
         try? Auth.auth().signOut()
         self.userSession = nil
     }
+    
+    func sendPasswordReset(email: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
 }

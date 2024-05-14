@@ -11,10 +11,11 @@ struct LoginView: View {
     @StateObject var viewModel = LoginViewModel()
     
     @State private var isShowingPassword = false
+    @State private var showForgotPasswordSheet = false
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 15){
+            VStack(spacing: 25){
                 Text("Welcome to Solo Level")
                     .font(.title2)
                     .fontWeight(.semibold)
@@ -23,7 +24,7 @@ struct LoginView: View {
                     .font(.footnote)
                     .foregroundStyle(.gray)
             }
-            VStack(spacing: 15){
+            VStack(spacing: 20){
 //                email input
                 HStack {
                     Image(systemName: "envelope")
@@ -62,7 +63,7 @@ struct LoginView: View {
                 HStack {
                     Spacer()
                     Button{
-//                            do something
+                        showForgotPasswordSheet.toggle()
                     } label: {
                         Text("Forgot password?")
                             .foregroundStyle(.red)
@@ -79,18 +80,18 @@ struct LoginView: View {
                         Text("Login")
                     }
                     .customButtonStyle()
-                    Button {
-//                        do something
-                    } label: {
-                        Text("GitHub")
-                    }
-                    .customButtonStyle()
-                    Button {
-//                        do something
-                    } label: {
-                        Text("Google")
-                    }
-                    .customButtonStyle()
+//                    Button {
+////                        do something
+//                    } label: {
+//                        Text("GitHub")
+//                    }
+//                    .customButtonStyle()
+//                    Button {
+////                        do something
+//                    } label: {
+//                        Text("Google")
+//                    }
+//                    .customButtonStyle()
                 }
 //                sign up message
                 HStack {
@@ -105,6 +106,9 @@ struct LoginView: View {
                 }
                 .font(.subheadline)
             }
+        }
+        .sheet(isPresented: $showForgotPasswordSheet) {
+            ForgotPasswordView()
         }
         .preferredColorScheme(.dark)
     }
