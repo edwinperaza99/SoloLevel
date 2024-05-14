@@ -29,6 +29,11 @@ struct SignupView: View {
     var isPasswordValid: Bool {
         return isPasswordValidLength && hasNumber && hasLowercase && hasUppercase
     }
+    var isEmailValid: Bool {
+           let emailFormat = "(?:[A-Z0-9a-z._%+-]+)@(?:[A-Za-z0-9-]+\\.)+[A-Za-z]{2,64}"
+           let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+           return emailPredicate.evaluate(with: viewModel.email)
+       }
     
     var body: some View {
         NavigationStack {
@@ -52,6 +57,11 @@ struct SignupView: View {
                         .cornerRadius(12)
                 }
                 .customInputFieldStyle()
+                if !isEmailValid && !viewModel.email.isEmpty {
+                 Text("*email is invalid")
+                     .font(.caption)
+                     .foregroundColor(.red)
+                }
 //                password input
                 HStack {
                     Image(systemName: "lock")
@@ -114,8 +124,8 @@ struct SignupView: View {
                         Text("REGISTER")
                     }
                     .customButtonStyle()
-                    .opacity(isPasswordValid ? 1: 0.5)
-                    .disabled(!isPasswordValid)
+                    .opacity(isPasswordValid  && isEmailValid ? 1: 0.5)
+                    .disabled(!(isPasswordValid && isEmailValid))
                 }
                 HStack {
                     Text("Already have an account?")

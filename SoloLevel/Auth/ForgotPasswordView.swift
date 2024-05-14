@@ -11,6 +11,12 @@ struct ForgotPasswordView: View {
     @State private var email = ""
     @State private var message = ""
     @State private var showingAlert = false
+    
+    var isEmailValid: Bool {
+       let emailFormat = "(?:[A-Z0-9a-z._%+-]+)@(?:[A-Za-z0-9-]+\\.)+[A-Za-z]{2,64}"
+       let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+       return emailPredicate.evaluate(with: email)
+   }
 
     var body: some View {
         VStack(spacing: 20) {
@@ -30,13 +36,20 @@ struct ForgotPasswordView: View {
                     .cornerRadius(12)
             }
             .customInputFieldStyle()
-
+            if !isEmailValid && !email.isEmpty {
+             Text("*email is invalid")
+                 .font(.caption)
+                 .foregroundColor(.red)
+            }
+            
             Button{
                 sendPasswordReset()
             } label: {
                 Text("Reset Password")
             }
             .customButtonStyle()
+            .opacity(isEmailValid ? 1: 0.5)
+            .disabled(!(isEmailValid))
         }
         .padding()
         .alert(isPresented: $showingAlert) {

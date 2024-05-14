@@ -13,6 +13,12 @@ struct LoginView: View {
     @State private var isShowingPassword = false
     @State private var showForgotPasswordSheet = false
     
+    var isEmailValid: Bool {
+       let emailFormat = "(?:[A-Z0-9a-z._%+-]+)@(?:[A-Za-z0-9-]+\\.)+[A-Za-z]{2,64}"
+       let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+       return emailPredicate.evaluate(with: viewModel.email)
+   }
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 25){
@@ -35,6 +41,11 @@ struct LoginView: View {
                         .cornerRadius(12)
                 }
                 .customInputFieldStyle()
+                if !isEmailValid && !viewModel.email.isEmpty {
+                 Text("*email is invalid")
+                     .font(.caption)
+                     .foregroundColor(.red)
+                }
 //                password input
                 HStack {
                     Image(systemName: "lock")
@@ -80,6 +91,8 @@ struct LoginView: View {
                         Text("Login")
                     }
                     .customButtonStyle()
+                    .opacity(isEmailValid ? 1: 0.5)
+                    .disabled(!(isEmailValid))
 //                    Button {
 ////                        do something
 //                    } label: {
