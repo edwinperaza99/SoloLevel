@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ForgotPasswordView: View {
+    @Environment(\.dismiss) var dismiss
     @State private var email = ""
     @State private var message = ""
     @State private var showingAlert = false
@@ -53,8 +54,16 @@ struct ForgotPasswordView: View {
         }
         .padding()
         .alert(isPresented: $showingAlert) {
-            Alert(title: Text("Password Reset"), message: Text(message), dismissButton: .default(Text("OK")))
-        }
+           Alert(
+               title: Text("Password Reset"),
+               message: Text(message),
+               dismissButton: .default(Text("OK"), action: {
+                   if message == "Password reset email sent!" {
+                       dismiss()
+                   }
+               })
+           )
+       }
         .preferredColorScheme(.dark)
     }
 
