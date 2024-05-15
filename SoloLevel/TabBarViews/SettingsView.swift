@@ -17,12 +17,12 @@ struct SettingsView: View {
                     }
                 }
                 Section("Account") {
-//                    NavigationLink(destination: ChangeEmailView()) {
+                    NavigationLink(destination: ChangeEmailView()) {
                         Text("Change email")
-//                    }
-//                    NavigationLink(destination: ChangePasswordView()) {
+                    }
+                    NavigationLink(destination: ForgotPasswordView()) {
                         Text("Change password")
-//                    }
+                    }
                 }
                 Section("Stats"){
                     NavigationLink(destination: ChangeJobView()) {

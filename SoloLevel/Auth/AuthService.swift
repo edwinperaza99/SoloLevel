@@ -55,4 +55,14 @@ class AuthService {
             }
         }
     }
+    
+    func changeEmail(newEmail: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        userSession?.updateEmail(to: newEmail) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
 }

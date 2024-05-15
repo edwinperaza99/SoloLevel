@@ -2,7 +2,7 @@
 //  ForgotPasswordView.swift
 //  SoloLevel
 //
-//  Created by csuftitan on 5/14/24.
+//  Created by Edwin on 5/14/24.
 //
 
 import SwiftUI
