@@ -81,30 +81,29 @@ struct LoginView: View {
                             .padding(.trailing)
                     }
                 }
+                // Error message
+              if let errorMessage = viewModel.errorMessage {
+                  Text(errorMessage)
+                      .foregroundColor(.red)
+                      .font(.caption)
+                      .padding(.bottom, 10)
+              }
 //                Login buttons
                 VStack(spacing: 15){
-                    Button {
-                        Task {
-                            try await viewModel.login()
+                    if viewModel.isLoading {
+                        ProgressView()
+                    } else {
+                        Button {
+                            Task {
+                                await viewModel.login()
+                            }
+                        } label: {
+                            Text("Login")
                         }
-                    } label: {
-                        Text("Login")
+                        .customButtonStyle()
+                        .opacity(isEmailValid && !viewModel.password.isEmpty ? 1: 0.5)
+                        .disabled(!isEmailValid && viewModel.password.isEmpty)
                     }
-                    .customButtonStyle()
-                    .opacity(isEmailValid ? 1: 0.5)
-                    .disabled(!(isEmailValid))
-//                    Button {
-////                        do something
-//                    } label: {
-//                        Text("GitHub")
-//                    }
-//                    .customButtonStyle()
-//                    Button {
-////                        do something
-//                    } label: {
-//                        Text("Google")
-//                    }
-//                    .customButtonStyle()
                 }
 //                sign up message
                 HStack {

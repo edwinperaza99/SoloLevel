@@ -10,8 +10,17 @@ import Foundation
 class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
+    @Published var errorMessage: String?
+    @Published var isLoading = false
     
-    func login() async throws {
-        try await AuthService.shared.login(email: email, password: password)
+    func login() async {
+        do {
+            isLoading = true
+            try await AuthService.shared.login(email: email, password: password)
+            errorMessage = nil
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+        isLoading = false
     }
 }

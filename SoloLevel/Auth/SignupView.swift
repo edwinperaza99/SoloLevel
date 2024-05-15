@@ -114,18 +114,32 @@ struct SignupView: View {
                 }
                 .font(.footnote)
                 .foregroundColor(.gray)
+                // Error message
+                if let errorMessage = viewModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .font(.caption)
+                        .padding(.bottom, 10)
+                        .onAppear {
+                            print("Displaying error message: \(errorMessage)") // Debugging
+                        }
+                }
 //                Sign up button
                 VStack(spacing: 15){
-                    Button {
-                        Task {
-                            try await viewModel.createUser()
+                    if viewModel.isLoading {
+                        ProgressView()
+                    } else {
+                        Button {
+                            Task {
+                                try await viewModel.createUser()
+                            }
+                        } label: {
+                            Text("REGISTER")
                         }
-                    } label: {
-                        Text("REGISTER")
+                        .customButtonStyle()
+                        .opacity(isPasswordValid  && isEmailValid ? 1: 0.5)
+                        .disabled(!(isPasswordValid && isEmailValid))
                     }
-                    .customButtonStyle()
-                    .opacity(isPasswordValid  && isEmailValid ? 1: 0.5)
-                    .disabled(!(isPasswordValid && isEmailValid))
                 }
                 HStack {
                     Text("Already have an account?")
