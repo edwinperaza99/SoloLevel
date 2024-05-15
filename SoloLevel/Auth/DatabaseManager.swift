@@ -13,6 +13,15 @@ class DatabaseManager {
     static let shared = DatabaseManager()
     private init() {}
     
+    private func randomStat(in range: ClosedRange<Int>) -> Int {
+        return Int.random(in: range)
+    }
+
+     private func randomPercentage(in range: ClosedRange<Double>) -> Double {
+         return Double.random(in: range)
+     }
+     
+    
     func createNewUser() async throws{
         guard let userId = AuthService.shared.userSession?.uid,
                let email = AuthService.shared.userSession?.email else {
@@ -22,25 +31,30 @@ class DatabaseManager {
         let name = email.components(separatedBy: "@").first ?? "Unknown"
         
         // Define initial values for other fields
-        let initialStatsValue = 10
         let initialLevel = 1
         
+        // Set the last level-up date to a date far in the past (e.g., January 1, 2000)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let lastLevelUpDate = dateFormatter.date(from: "2000/01/01 00:00") ?? Date(timeIntervalSince1970: 0)
+        
         let newUser = User(userId: userId,
-                           email: email,
-                           dateCreated: Date(),
-                           level: initialLevel,
-                           name: name,
-                           job: "Unknown",
-                           title: "Unknown",
-                           hp: initialStatsValue,
-                           mp: initialStatsValue,
-                           strength: initialStatsValue,
-                           health: initialStatsValue,
-                           agility: initialStatsValue,
-                           intelligence: initialStatsValue,
-                           sense: initialStatsValue,
-                           mind: initialStatsValue,
-                           ability: "Unknown")
+                            email: email,
+                            dateCreated: Date(),
+                            level: initialLevel,
+                            name: name,
+                            job: "Unknown",
+                            title: "Unknown",
+                            hp: 300,
+                            mp: 100,
+                            strength: randomStat(in: 7...12),
+                            health: randomStat(in: 7...12),
+                            agility: randomStat(in: 7...12),
+                            intelligence: randomStat(in: 7...12),
+                            sense: randomStat(in: 7...12),
+                            mind: randomStat(in: 7...12),
+                            ability: "Unknown",
+                            lastLevelUp: lastLevelUpDate)
         
         try await Firestore.firestore().collection("users").document(userId).setData(from: newUser)
     }
@@ -78,14 +92,16 @@ class DatabaseManager {
 
         // Calculate new stats
         let newLevel = user.level + 1
-        let newHp = user.hp + Int(Double(user.hp) * 0.1)  // Increase by 10%
-        let newMp = user.mp + Int(Double(user.mp) * 0.1)  // Increase by 10%
-        let newStrength = user.strength + 5  // Increment by 5 (example)
-        let newHealth = user.health + 5  // Increment by 5
-        let newAgility = user.agility + 5  // Increment by 5
-        let newIntelligence = user.intelligence + 5  // Increment by 5
-        let newSense = user.sense + 5  // Increment by 5
-        let newMind = user.mind + 5  // Increment by 5
+        let hpIncreasePercentage = randomPercentage(in: 0.10...0.30)  // Random percentage between 10% and 30%
+        let mpIncreasePercentage = randomPercentage(in: 0.10...0.30)  // Random percentage between 10% and 30%
+        let newHp = user.hp + Int(Double(user.hp) * hpIncreasePercentage)
+        let newMp = user.mp + Int(Double(user.mp) * mpIncreasePercentage)
+        let newStrength = user.strength + randomStat(in: 3...5)
+        let newHealth = user.health + randomStat(in: 3...5)
+        let newAgility = user.agility + randomStat(in: 3...5)
+        let newIntelligence = user.intelligence + randomStat(in: 3...5)
+        let newSense = user.sense + randomStat(in: 3...5)
+        let newMind = user.mind + randomStat(in: 3...5)
 
         // Update Firestore
         try await Firestore.firestore().collection("users").document(userId).updateData([
