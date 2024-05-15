@@ -25,15 +25,18 @@ struct SettingsView: View {
                     }
                 }
                 Section("Stats"){
-                    NavigationLink(destination: ChangeJobView()) {
+                    NavigationLink(destination: UpdateNameView()) {
+                        Text("Change name")
+                    }
+                    NavigationLink(destination: UpdateJobView()) {
                         Text("Change job")
                     }
-                    NavigationLink(destination: EditTitlesView()) {
-                        Text("Change titles")
+                    NavigationLink(destination: UpdateTitleView()) {
+                        Text("Change title")
                     }
-//                    NavigationLink(destination: ) {
-                        Text("Change username")
-//                    }
+                    NavigationLink(destination: UpdateAbilityView()){
+                        Text("Change ability")
+                    }
                 }
                 Section {
                     NavigationLink(destination: AboutView()) {
