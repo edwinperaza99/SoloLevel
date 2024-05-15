@@ -19,6 +19,10 @@ struct ChallengesList: View {
         }
     }
     var body: some View {
+        if challenges.isEmpty {
+            ContentUnavailableView("No Challenges", systemImage: "exclamationmark.triangle", description: Text("Add new challenges now."))
+                .padding()
+       }
         List {
            ForEach(challenges) { challenge in
                NavigationLink(destination: EditChallengeView(challenge: challenge)){

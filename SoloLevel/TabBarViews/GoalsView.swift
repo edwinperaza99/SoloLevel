@@ -33,6 +33,10 @@ struct GoalsList: View {
 
     
     var body: some View {
+        if goals.isEmpty {
+            ContentUnavailableView("No Goals Set", systemImage: "exclamationmark.triangle", description: Text("Start adding your new goals."))
+                .padding()
+       }
         List {
             ForEach(goals) { goal in
                 NavigationLink(value: goal){

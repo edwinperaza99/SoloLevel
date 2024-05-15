@@ -13,29 +13,29 @@ struct SettingsView: View {
             Form {
                 Section("Challenges") {
                     NavigationLink(destination: EditChallengesView()) {
-                        Text("Edit challenges")
+                        Text("Edit Challenges")
                     }
                 }
                 Section("Account") {
                     NavigationLink(destination: ChangeEmailView()) {
-                        Text("Change email")
+                        Text("Change Email")
                     }
                     NavigationLink(destination: ForgotPasswordView()) {
-                        Text("Change password")
+                        Text("Change Password")
                     }
                 }
                 Section("Stats"){
                     NavigationLink(destination: UpdateNameView()) {
-                        Text("Change name")
+                        Text("Change Name")
                     }
                     NavigationLink(destination: UpdateJobView()) {
-                        Text("Change job")
+                        Text("Change Job")
                     }
                     NavigationLink(destination: UpdateTitleView()) {
-                        Text("Change title")
+                        Text("Change Title")
                     }
                     NavigationLink(destination: UpdateAbilityView()){
-                        Text("Change ability")
+                        Text("Change Ability")
                     }
                 }
                 Section {
@@ -52,7 +52,7 @@ struct SettingsView: View {
                         HStack{
                             Image(systemName: "power")
                                 .foregroundStyle(.red)
-                            Text("Log out")
+                            Text("Log Out")
                                 .foregroundColor(.red)
                         }
                     }

@@ -39,6 +39,10 @@ struct ChallengesView: View {
     
     var body: some View {
         ZStack {
+            if challenges.isEmpty {
+                ContentUnavailableView("No Challenges", systemImage: "exclamationmark.triangle", description: Text("Add new challenges in the settings tab."))
+                    .padding()
+           }
             VStack(spacing: 15) {
                 QuestNotice()
                 
