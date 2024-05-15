@@ -75,7 +75,7 @@ struct ProfileView: View {
             .customTextStyleSM()
 //                hp bar
             VStack {
-                Text("HP: 5114")
+                Text("HP: \(user.hp)")
                     .AlignLeft()
                 RectangleDivider()
             }
@@ -83,7 +83,7 @@ struct ProfileView: View {
             .padding(.leading, 40)
 //                mana bar
             VStack {
-                Text("MP: 548")
+                Text("MP: \(user.mp)")
                     .AlignLeft()
                 RectangleDivider()
             }
