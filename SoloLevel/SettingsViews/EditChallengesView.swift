@@ -47,7 +47,7 @@ struct EditChallengesView: View {
             .navigationTitle("Edit Challenges")
             .scrollBounceBehavior(.basedOnSize)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
