@@ -101,4 +101,45 @@ class DatabaseManager {
             "lastLevelUp": Date()  // Record the current time as the last level-up time
         ])
     }
+    
+    func updateJob(newJob: String) async throws {
+        guard let userId = AuthService.shared.userSession?.uid else {
+            throw NSError(domain: "AuthServiceError", code: -1, userInfo: [NSLocalizedDescriptionKey: "User session not available."])
+        }
+        
+        try await Firestore.firestore().collection("users").document(userId).updateData([
+            "job": newJob
+        ])
+    }
+
+    func updateName(newName: String) async throws {
+        guard let userId = AuthService.shared.userSession?.uid else {
+            throw NSError(domain: "AuthServiceError", code: -1, userInfo: [NSLocalizedDescriptionKey: "User session not available."])
+        }
+        
+        try await Firestore.firestore().collection("users").document(userId).updateData([
+            "name": newName
+        ])
+    }
+
+    func updateTitle(newTitle: String) async throws {
+        guard let userId = AuthService.shared.userSession?.uid else {
+            throw NSError(domain: "AuthServiceError", code: -1, userInfo: [NSLocalizedDescriptionKey: "User session not available."])
+        }
+        
+        try await Firestore.firestore().collection("users").document(userId).updateData([
+            "title": newTitle
+        ])
+    }
+
+    func updateAbility(newAbility: String) async throws {
+        guard let userId = AuthService.shared.userSession?.uid else {
+            throw NSError(domain: "AuthServiceError", code: -1, userInfo: [NSLocalizedDescriptionKey: "User session not available."])
+        }
+        
+        try await Firestore.firestore().collection("users").document(userId).updateData([
+            "ability": newAbility
+        ])
+    }
+
 }
