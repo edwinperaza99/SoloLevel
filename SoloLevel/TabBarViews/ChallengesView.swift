@@ -33,7 +33,8 @@ struct ChallengesView: View {
             let today = Calendar.current.startOfDay(for: Date())
             return allChallengesCompleted && (localLastLevelUp != today)
         }
-        return allChallengesCompleted  // Allow leveling up if never done before
+        return allChallengesCompleted  // Allow leveling up if never done 
+//        return false //try returning false
     }
 
     
@@ -104,6 +105,9 @@ struct ChallengesView: View {
                     Task {
                         do {
                             try await DatabaseManager.shared.levelUpUser()
+                            for index in challenges.indices {
+                                 challenges[index].achieved = 0
+                             }
                             // Show success message
                         } catch {
                             // Handle errors, perhaps by showing an alert
@@ -121,11 +125,6 @@ struct ChallengesView: View {
                        return
                    }
                }
-            
-//                   .sheet(isPresented: $showLevelUpView) {
-//                       LevelUpView()
-//                   }
-                
             }
 //            TODO: add alert for when challenge has not been met
             if showingAlert {
