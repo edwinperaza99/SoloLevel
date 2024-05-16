@@ -26,16 +26,20 @@ struct ChallengesView: View {
     }
     
     @State private var lastLevelUpDate: Date?
+    @State private var statusMessage: String = "- If the daily quest remains incomplete, penalties may be given"
     
     var canLevelUp: Bool {
-        if let lastLevelUpDate = lastLevelUpDate {
-            let localLastLevelUp = Calendar.current.startOfDay(for: lastLevelUpDate)
-            let today = Calendar.current.startOfDay(for: Date())
-            return allChallengesCompleted && (localLastLevelUp != today)
-        }
-        return allChallengesCompleted  // Allow leveling up if never done 
-//        return false //try returning false
-    }
+         // Debug prints to check values
+         print("All Challenges Completed: \(allChallengesCompleted)")
+         print("Last Level Up Date: \(String(describing: lastLevelUpDate))")
+         
+         if let lastLevelUp = lastLevelUpDate {
+             let localLastLevelUp = Calendar.current.startOfDay(for: lastLevelUp)
+             let today = Calendar.current.startOfDay(for: Date())
+             return allChallengesCompleted && (localLastLevelUp != today)
+         }
+         return allChallengesCompleted
+     }
 
     
     var body: some View {
@@ -80,7 +84,7 @@ struct ChallengesView: View {
                 }
                 .font(.title2)
 //                alert message here
-                (Text("Caution!").foregroundColor(.red) + Text(" - If the daily quest remains incomplete, penalties may be given"))
+                (Text("Caution! ").foregroundColor(.red) + Text(statusMessage))
                     .customTextStyle()
 //                timer diplay
                 VStack(spacing: 10){
@@ -104,14 +108,16 @@ struct ChallengesView: View {
                 Button("Level Up") {
                     Task {
                         do {
-                            try await DatabaseManager.shared.levelUpUser()
                             for index in challenges.indices {
                                  challenges[index].achieved = 0
                              }
+                            try await DatabaseManager.shared.levelUpUser()
+                            statusMessage = "- Complete your challenges tomorrow"
                             // Show success message
                         } catch {
                             // Handle errors, perhaps by showing an alert
                             print("Error leveling up: \(error)")
+                            statusMessage = "- You already leveled up today, come back tomorrow"
                         }
                     }
                 }
@@ -124,6 +130,7 @@ struct ChallengesView: View {
                    guard let lastLevelUpDate = viewModel.user?.lastLevelUp else {
                        return
                    }
+                   updateStatusMessage()
                }
             }
 //            TODO: add alert for when challenge has not been met
@@ -144,6 +151,18 @@ struct ChallengesView: View {
         let seconds = Int(timeLeft) % 60
         countdownTimer = String(format: "%02i:%02i:%02i", hours, minutes, seconds)
     }
+    
+    func updateStatusMessage() {
+          if canLevelUp {
+              statusMessage = "- All challenges completed, you can level up now"
+          } else if let lastLevelUp = lastLevelUpDate, Calendar.current.isDateInToday(lastLevelUp) {
+              statusMessage = "- You already leveled up today, come back tomorrow"
+          } else if allChallengesCompleted {
+              statusMessage = "- All challenges completed, you can level up now"
+          } else {
+              statusMessage = "- If the daily quest remains incomplete, penalties may be given"
+          }
+      }
 }
 
 #Preview {
