@@ -12,6 +12,8 @@ struct LoginView: View {
     
     @State private var isShowingPassword = false
     @State private var showForgotPasswordSheet = false
+    @State private var errorMessage: String?
+    @State private var showAlert = false
     
     var isEmailValid: Bool {
        let emailFormat = "(?:[A-Z0-9a-z._%+-]+)@(?:[A-Za-z0-9-]+\\.)+[A-Za-z]{2,64}"
@@ -82,12 +84,12 @@ struct LoginView: View {
                     }
                 }
                 // Error message
-              if let errorMessage = viewModel.errorMessage {
-                  Text(errorMessage)
-                      .foregroundColor(.red)
-                      .font(.caption)
-                      .padding(.bottom, 10)
-              }
+                if let errorMessage = errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .font(.caption)
+                        .padding(.bottom, 10)
+                }
 //                Login buttons
                 VStack(spacing: 15){
                     if viewModel.isLoading {
@@ -95,7 +97,17 @@ struct LoginView: View {
                     } else {
                         Button {
                             Task {
-                                await viewModel.login()
+                                do {
+                                    errorMessage = nil // Clear any previous error messages
+                                    try await viewModel.login()
+                                } catch {
+                                    if let loginError = error as? LoginError {
+                                        errorMessage = loginError.localizedDescription
+                                    } else {
+                                        errorMessage = error.localizedDescription
+                                    }
+                                    showAlert = true
+                                }
                             }
                         } label: {
                             Text("Login")
@@ -122,6 +134,13 @@ struct LoginView: View {
         .sheet(isPresented: $showForgotPasswordSheet) {
             ForgotPasswordView()
         }
+        .alert(isPresented: $showAlert) {
+             Alert(
+                 title: Text("Login Error"),
+                 message: Text(errorMessage ?? "An unknown error occurred."),
+                 dismissButton: .default(Text("OK"))
+             )
+         }
         .preferredColorScheme(.dark)
     }
 }

@@ -7,19 +7,33 @@
 
 import Foundation
 
+enum LoginError: Error, LocalizedError {
+    case invalidCredentials
+    case unknownError
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidCredentials:
+            return "Invalid email or password."
+        case .unknownError:
+            return "An unknown error occurred. Please try again."
+        }
+    }
+}
+
 class LoginViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
-    @Published var errorMessage: String?
     @Published var isLoading = false
     
-    func login() async {
+    func login() async throws {
         do {
             isLoading = true
             try await AuthService.shared.login(email: email, password: password)
-            errorMessage = nil
+            isLoading = false
         } catch {
-            errorMessage = error.localizedDescription
+            isLoading = false
+            throw LoginError.invalidCredentials
         }
         isLoading = false
     }

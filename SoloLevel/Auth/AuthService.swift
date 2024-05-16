@@ -24,6 +24,7 @@ class AuthService {
             print("User has log in")
         } catch {
             print("Error: \(error.localizedDescription)")
+            throw error
         }
     }
     
@@ -38,6 +39,7 @@ class AuthService {
             print("New user has been added to database")
         } catch {
             print("Error: \(error.localizedDescription)")
+            throw error
         }
     }
     
