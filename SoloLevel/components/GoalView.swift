@@ -64,8 +64,15 @@ struct GoalView: View {
               Text("Are you sure?")
           }
         .toolbar {
-            Button("Delete this goal", systemImage: "trash") {
-                showingDeleteAlert = true
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Save") {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Delete this goal", systemImage: "trash") {
+                    showingDeleteAlert = true
+                }
             }
         }
         .sheet(isPresented: $editingNotes) {
