@@ -64,31 +64,27 @@ struct ProfileView: View {
                 Text("Name: \(user.name)")
                 Text("Level: \(user.level)")
                 Text("Job: \(user.job)")
-               Text("Fatigue: 0")
-           }
-            .customTextStyleSM()
-            .padding(.leading, 40)
-            Text("Title: \(user.title)")
-            .AlignLeft()
-            .padding(.leading, 40)
-            .foregroundColor(.white)
-            .customTextStyleSM()
-//                hp bar
-            VStack {
+                Text("Fatigue: 0")
+                Text("Title: \(user.title)")
+                Spacer()
                 Text("HP: \(user.hp)")
-                    .AlignLeft()
-                RectangleDivider()
-            }
-            .customTextStyleSM()
-            .padding(.leading, 40)
+                
+           }
+                .customTextStyleSM()
+                .padding(.leading, 40)
+                .padding(.bottom, 10)
+            Text("MP: \(user.mp)")
+                .AlignLeft()
+                .padding(.leading, 40)
+                .padding(.bottom, 40)
 //                mana bar
-            VStack {
-                Text("MP: \(user.mp)")
-                    .AlignLeft()
-                RectangleDivider()
-            }
+//            VStack {
+//                Text("MP: \(user.mp)")
+//                    .AlignLeft()
+//                RectangleDivider()
+//            }
             .customTextStyleSM()
-            .padding(.leading, 40)
+//            .padding(.leading, 40)
 //                just a divider
             RectangleDivider()
 //                player stats here
