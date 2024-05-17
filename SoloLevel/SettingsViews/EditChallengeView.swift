@@ -21,8 +21,11 @@ struct EditChallengeView: View {
                 TextField(challenge.text, text: $challenge.text)
             }
             Section("Repetitions/quantity:"){
-                TextField("\(challenge.quantity)", value: $challenge.quantity, formatter: NumberFormatter())
-                    .keyboardType(.numberPad)
+                //                TextField("\(challenge.quantity)", value: $challenge.quantity, formatter: NumberFormatter())
+                //                    .keyboardType(.numberPad)
+                Stepper(value: $challenge.quantity, in: 1...1000) {
+                    Text("\(challenge.quantity)")
+                }
             }
 //            Section("Measurement:"){
 //                TextField(challenge.measure, text: $challenge.measure)
@@ -39,8 +42,15 @@ struct EditChallengeView: View {
               Text("Are you sure?")
           }
         .toolbar {
-            Button("Delete this challenge", systemImage: "trash") {
-                showingDeleteAlert = true
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Save") {
+                    dismiss()
+                }
+            }
+            ToolbarItem {
+                Button("Delete this challenge", systemImage: "trash") {
+                    showingDeleteAlert = true
+                }
             }
         }
     }
