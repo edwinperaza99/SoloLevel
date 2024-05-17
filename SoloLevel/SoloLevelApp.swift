@@ -27,26 +27,11 @@ struct SoloLevelApp: App {
 //           }
 //       }
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-//    init() {
-//            // Clear UserDefaults for testing purposes
-//            if let appDomain = Bundle.main.bundleIdentifier {
-//                UserDefaults.standard.removePersistentDomain(forName: appDomain)
-//                UserDefaults.standard.synchronize()
-//            }
-//            
-//            // Delete all instances of the Goal model
-//            do {
-//                try modelContext.delete(model: Goal.self)
-//            } catch {
-//                print("Failed to clear all Goal data.")
-//            }
-//        }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
         .modelContainer(for: [Goal.self, Challenge.self])
-//        .modelContainer(for: Challenges.self)
     }
 }

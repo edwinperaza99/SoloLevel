@@ -104,8 +104,7 @@ struct ProfileView: View {
             VStack {
 //                    skills here
                 Text("\(user.ability)")
-                .padding(.leading, -10)
-                .pickerStyle(.menu)
+                    .AlignLeft()
                 .AlignLeft()
                 Text("ACTIVATED")
                     .foregroundColor(.green)
