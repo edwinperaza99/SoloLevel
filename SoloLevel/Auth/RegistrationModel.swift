@@ -10,7 +10,6 @@ import Foundation
 class RegistrationViewModel: ObservableObject {
     @Published var email = ""
     @Published var password = ""
-    @Published var errorMessage: String?
     @Published var isLoading = false
     
     @MainActor
@@ -18,10 +17,9 @@ class RegistrationViewModel: ObservableObject {
         do {
             isLoading = true
             try await AuthService.shared.createUser(email: email, password: password)
-            errorMessage = nil
         } catch {
-            errorMessage = error.localizedDescription
-            print("Error message set: \(errorMessage ?? "No error message")") // Debugging
+            isLoading = false
+            throw error
         }
         isLoading = false
     }

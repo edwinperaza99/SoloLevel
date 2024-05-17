@@ -101,11 +101,7 @@ struct LoginView: View {
                                     errorMessage = nil // Clear any previous error messages
                                     try await viewModel.login()
                                 } catch {
-                                    if let loginError = error as? LoginError {
-                                        errorMessage = loginError.localizedDescription
-                                    } else {
-                                        errorMessage = error.localizedDescription
-                                    }
+                                    errorMessage = error.localizedDescription
                                     showAlert = true
                                 }
                             }

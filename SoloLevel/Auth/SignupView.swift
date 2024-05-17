@@ -11,6 +11,8 @@ struct SignupView: View {
     @StateObject var viewModel = RegistrationViewModel()
     
     @State private var isShowingPassword = false
+    @State private var showAlert = false
+    @State private var errorMessage: String?
     
     @Environment(\.dismiss) private var dismiss
     
@@ -115,14 +117,11 @@ struct SignupView: View {
                 .font(.footnote)
                 .foregroundColor(.gray)
                 // Error message
-                if let errorMessage = viewModel.errorMessage {
+                if let errorMessage = errorMessage {
                     Text(errorMessage)
                         .foregroundColor(.red)
                         .font(.caption)
                         .padding(.bottom, 10)
-                        .onAppear {
-                            print("Displaying error message: \(errorMessage)") // Debugging
-                        }
                 }
 //                Sign up button
                 VStack(spacing: 15){
@@ -130,10 +129,16 @@ struct SignupView: View {
                         ProgressView()
                     } else {
                         Button {
-                            Task {
-                                try await viewModel.createUser()
-                            }
-                        } label: {
+                           Task {
+                               do {
+                                   errorMessage = nil // Clear any previous error messages
+                                   try await viewModel.createUser()
+                               } catch {
+                                   errorMessage = error.localizedDescription
+                                   showAlert = true
+                               }
+                           }
+                       } label: {
                             Text("REGISTER")
                         }
                         .customButtonStyle()
@@ -150,6 +155,13 @@ struct SignupView: View {
                 
             }
         }
+        .alert(isPresented: $showAlert) {
+           Alert(
+               title: Text("Sign Up Error"),
+               message: Text(errorMessage ?? "An unknown error occurred."),
+               dismissButton: .default(Text("OK"))
+           )
+       }
         .preferredColorScheme(.dark)
     }
 }
